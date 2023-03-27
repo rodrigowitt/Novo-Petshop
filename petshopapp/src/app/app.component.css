@@ -1,0 +1,58 @@
+* {
+   
+    
+    }
+    @media (min-width: 991.98px) {
+    main {
+    padding-left: 240px;
+    }
+    }
+    
+    /* Sidebar */
+    .sidebar {
+    position: fixed;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    padding: 58px 0 0; /* Height of navbar */
+    box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
+    width: 190px;
+    z-index: 600;
+    background-color: #222327;
+   }
+   .menus{
+    color: white!important;
+    background-color: #212529!important;
+   }
+   .menus:hover{
+    cursor: pointer;
+    background-color: white!important;
+    color: black !important;
+   }
+   .ripples{
+
+       background-color: #212529;
+       color: white;
+   }
+   
+   .ripples:hover{
+    background-color: white;
+    color: black;
+   }
+   .ativo{
+    background-color: white;
+    color: black;
+   }
+
+    .navegacao{
+        margin-left: 95vh;
+    }
+    .navbar-brand{
+        margin-left: 5vh;
+    }
+
+    .active-route {
+        background-color: white !important;
+        color: black !important;    
+    }
+  

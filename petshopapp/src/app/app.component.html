@@ -1,0 +1,272 @@
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.3.0/css/all.min.css" rel="stylesheet">
+
+<!--Main Navigation-->
+<header>
+   <!-- Sidebar -->
+   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse opcoes">
+     <div class="position-sticky">
+       <div class="list-group list-group-flush mx-3 mt-4" >
+         <a routerLink="inicio" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2 " aria-current="true">
+           <i class="fa-solid fa-house me-3"></i><span>Início</span>
+         </a>
+         <a routerLink="clientes" routerLinkActive="active-route" class="list-group-item list-group-item-action py-2 menus">
+           <i class="fa-solid fa-list me-3"></i><span>Clientes</span>
+         </a>
+
+         <a (click)="onOpenModal(null, 'add')"  class="list-group-item list-group-item-action py-2 menus"><i
+             class="fa-regular fa-plus fa-beat me-3"  ></i><span>Novo Serviço</span></a>
+         <a  (click)="onOpenModal(null, 'addClient')" class="list-group-item list-group-item-action py-2 menus"><i
+             class="fa-regular fa-plus fa-beat me-3 "></i><span>Novo Cliente</span></a>
+         <a  class="list-group-item list-group-item-action py-2 menus">
+           <i class="fas fa-chart-pie fa-fw me-3 "></i><span>Relatórios</span>
+         </a>
+       </div>
+     </div>
+   </nav>
+   <!-- Sidebar -->
+ 
+   <!-- Navbar -->
+   <nav id="main-navbar" class="navbar navbar-expand-lg navbar-light fixed-top navegacao">
+     <!-- Container wrapper -->
+     <div class="container-fluid">
+       <!-- Toggle button -->
+       <button class="navbar-toggler" type="button" data-mdb-toggle="collapse" data-mdb-target="#sidebarMenu"
+         aria-controls="sidebarMenu" aria-expanded="false" aria-label="Toggle navigation">
+         <i class="fas fa-bars"></i>
+       </button>
+ 
+       <!-- Brand -->
+       
+       <a class="navbar-brand" routerLink="inicio">
+         <img src="../assets/Pets_1200x1200.webp" height="100" alt="MDB Logo"
+           loading="lazy" />
+       </a>      
+     </div>
+   </nav>
+  
+ </header>
+ <!--Main Navigation-->
+ 
+ <!--Main layout-->
+ <main style="margin-top: 58px;">
+   <div class="container pt-4"></div>
+ </main>
+ <!--Main layout-->
+ 
+ <div class="modal fade" id="addPetModal" tabindex="-1" role="dialog" aria-labelledby="addPetModalLabel" aria-hidden="true">
+  <div class="modal-dialog" role="document" id="main-container">
+    <div class="modal-content">
+       <div class="modal-header text-center" >
+          <h5 class="modal-title" id="addLocadoraModalLabel">Adicionar Serviço
+          </h5>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+          </button>
+       </div>
+       <div class="modal-body">
+          <form #addForm="ngForm" (ngSubmit)="onAddPet(addForm)">
+          <div class="form-group">
+             <label for="nome">Nome</label>
+             <input type="text" ngModel name="nome" class="form-control" id="nome" placeholder="Nome" required>
+          </div>
+          <div class="form-group">
+              <label for="especie">Espécie:</label>
+              <input type="text" ngModel name="especie" class="form-control" id="especie" placeholder="Especie" required>
+           </div>
+          <div class="form-group">
+             <label for="raca">Raça</label>
+             <input type="raca" ngModel name="raca" class="form-control" id="raca" placeholder="Raça" required>
+          </div>
+          <div class="form-group">
+            <label for="altura">Altura</label>
+            <input type="text" ngModel name="altura" class="form-control" id="altura" placeholder="Altura" required>
+         </div>
+         <div class="form-group">
+          <label for="peso">Peso</label>
+          <input type="text" ngModel name="peso" class="form-control" id="peso" placeholder="Peso" required>
+       </div>
+       <div class="form-group">
+        <label for="pelagem">Pelagem</label>
+        <input type="text" ngModel name="pelagem" class="form-control" id="pelagem" placeholder="Pelagem" required>
+     </div>
+          <div class="form-group">
+              <label for="tratamento">Tratamento</label>
+              <input type="text" ngModel name="tratamento" class="form-control" id="tratamento" placeholder="Tratamento" required>
+           </div>
+         <div class="form-group">
+             <label for="email">Email</label>
+             <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+          </div>
+          <div class="form-group">
+             <label for="telefone">Telefone</label>
+             <input type="text" ngModel name="telefone" class="form-control" id="telefone" placeholder="Telefone" required>
+          </div>
+          <div class="form-group">
+           <label for="clienteid">Id do cliente</label>
+           <select class="form-select" aria-label="Default select example"  ngModel name="clienteid" required>
+             <option *ngFor="let clientes of cliente" value="{{clientes.id}}"  id="clienteid">{{clientes.nome}}</option>
+          </select>
+        </div>
+          <div class="form-group">
+           <label for="valor">Valor</label>
+           <input type="text" ngModel name="valor" class="form-control" id="valor" placeholder="Valor" required>
+        </div>
+          <div class="text-center " >
+             <button type="button" id="add-pet-form" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+             <button [disabled]="addForm.invalid" type="submit" class="btn btn-primary ml-2" >Salvar</button>
+          </div>
+          </form>
+       </div>
+    </div>
+  </div>
+</div>
+
+
+<div class="modal fade" id="addClienteModal" tabindex="-1" role="dialog" aria-labelledby="addPetModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+ <div class="modal-content">
+    <div class="modal-header text-center" >
+       <h5 class="modal-title" id="addLocadoraModalLabel">Adicionar Cliente
+       </h5>
+       <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+       <span aria-hidden="true">&times;</span>
+       </button>
+    </div>
+    <div class="modal-body">
+       <form #addFormCliente="ngForm" (ngSubmit)="onAddCliente(addFormCliente)">
+       <div class="form-group">
+          <label for="nome">Nome</label>
+          <input type="text" ngModel name="nome" class="form-control" id="nome" placeholder="Nome" required>
+       </div>
+       <div class="form-group">
+           <label for="telefone">Telefone</label>
+           <input type="text" ngModel name="telefone" class="form-control" id="telefone" placeholder="Telefone" required>
+        </div>
+       <div class="form-group">
+          <label for="email">Email</label>
+          <input type="email" ngModel name="email" class="form-control" id="email" placeholder="Email" required>
+       </div>
+       <div class="form-group">
+         <label for="nascimento">Nascimento</label>
+         <input type="text" ngModel name="nascimento" class="form-control" id="nascimento" placeholder="Nascimento" required>
+      </div>
+      <div class="form-group">
+       <label for="rua">Rua</label>
+       <input type="text" ngModel name="rua" class="form-control" id="rua" placeholder="Rua" required>
+    </div>
+    <div class="form-group">
+     <label for="cidade">Cidade</label>
+     <input type="text" ngModel name="cidade" class="form-control" id="cidade" placeholder="Cidade" required>
+  </div>
+       <div class="form-group">
+          <label for="bairro">Bairro</label>
+          <input type="text" ngModel name="bairro" class="form-control" id="bairro" placeholder="Bairro" required>
+       </div>
+       <div class="form-group">
+           <label for="cep">Cep</label>
+           <input type="text" ngModel name="cep" class="form-control" id="cep" placeholder="Cep" required>
+        </div>
+       <div class="text-center " >
+          <button type="button" id="add-cliente-form" class="btn btn-secondary" data-dismiss="modal">Fechar</button>
+          <button type="submit" class="btn btn-primary ml-2" >Salvar</button>
+       </div>
+       </form>
+    </div>
+ </div>
+</div>
+</div>
+
+
+
+
+<div class="modal fade" id="updatePetModal" tabindex="-1" role="dialog" aria-labelledby="petshopEditModalLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+   <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title" id="updatePetshopModalLabel">Editar Tratamento de {{editPet?.nome}}</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div class="modal-body">
+         <form #editForm="ngForm">
+            <div class="form-group">
+               <label for="nome">Nome</label>
+               <input type="text" ngModel="{{editPet?.nome}}" name="nome" class="form-control" id="nome" aria-describedby="emailHelp" placeholder="Nome">
+            </div>
+            <input type="hidden" ngModel="{{editPet?.id}}" name="id" class="form-control" id="id" placeholder="Email">
+            <div class="form-group">
+               <label for="especie">Espécie:</label>
+               <input type="text" ngModel="{{editPet?.email}}" name="especie" class="form-control" id="especie" placeholder="Especie">
+            </div>
+            <div class="form-group">
+              <label for="raca">Raça</label>
+              <input type="text" ngModel="{{editPet?.raca}}" name="raca" class="form-control" id="raca" placeholder="Raca">
+           </div>
+           <div class="form-group">
+            <label for="altura">Altura</label>
+            <input type="text" ngModel="{{editPet?.altura}}" name="altura" class="form-control" id="altura" placeholder="Altura">
+          </div>
+          <div class="form-group">
+            <label for="peso">Peso</label>
+            <input type="text" ngModel="{{editPet?.peso}}" name="peso" class="form-control" id="peso" placeholder="Peso">
+         </div>
+         <div class="form-group">
+          <label for="pelagem">Pelagem</label>
+          <input type="text" ngModel="{{editPet?.pelagem}}" name="pelagem" class="form-control" id="pelagem" placeholder="Pelagem">
+        </div>
+        <div class="form-group">
+          <label for="responsavel">Responsavel</label>
+          <input type="text" ngModel="{{editPet?.responsavel}}" name="responsavel" class="form-control" id="responsavel" placeholder="Responsavel">
+       </div>
+       <div class="form-group">
+        <label for="tratamento">Tratamento</label>
+        <input type="text" ngModel="{{editPet?.tratamento}}" name="tratamento" class="form-control" id="tratamento" placeholder="Tratamento">
+      </div>
+      <div class="form-group">
+        <label for="statusTratamento">Status do Tratamento</label>
+        <input type="text" ngModel="{{editPet?.statusTratamento}}" name="statusTratamento" class="form-control" id="statusTratamento" placeholder="statusTratamento">
+      </div>
+          <div class="form-group">
+               <label for="email">Email</label>
+               <input type="email" ngModel="{{editPet?.email}}" name="email" class="form-control" id="email" placeholder="Email">
+          </div>
+            <div class="form-group">
+               <label for="telefone">Telefone</label>
+               <input type="text" ngModel="{{editPet?.telefone}}" name="telefone" class="form-control" id="telefone" name="telefone" placeholder="Telefone">
+            </div>
+            <div class="form-group">
+              <label for="valor">Valor</label>
+              <input type="text" ngModel="{{editPet?.valor}}" name="valor" class="form-control" id="valor" name="valor" placeholder="Valor">
+           </div>
+           <div class="text-center">
+               <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Fechar</button>
+               <button (click)="onUpdatePet(editForm.value,editPet?.id)" data-dismiss="modal" class="btn btn-primary ml-2" >Salvar</button>
+            </div>
+         </form>
+      </div>
+   </div>
+</div>
+</div>
+
+<div class="modal fade" id="deletePetModal" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+<div class="modal-dialog" role="document">
+   <div class="modal-content">
+      <div class="modal-header">
+         <h5 class="modal-title" id="deleteModelLabel">Deletar Locação</h5>
+         <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+         <span aria-hidden="true">&times;</span>
+         </button>
+      </div>
+      <div class="modal-body">
+         <p>Tem certeza que deseja deletar: {{deletePet?.nome}}?</p>
+         <div class="text-center">
+            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+            <button (click)="onDeletePet(deletePet?.id)" class="btn btn-danger ml-2" data-dismiss="modal">Sim</button>
+         </div>
+      </div>
+   </div>
+</div>
+</div>
+<router-outlet></router-outlet>
+
