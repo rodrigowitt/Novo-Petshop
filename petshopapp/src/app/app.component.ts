@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { Router, RouterLink, RouterLinkActive } from '@angular/router';
 import { Cliente, Petshop } from './petshop';
 import { PetshopService } from './petshop.service';
+
 
 
 
@@ -17,15 +19,23 @@ export class AppComponent implements OnInit{
   public cliente: Cliente[] = [];
   public editPet : Petshop | null;
   public deletePet : Petshop | null;
+  router: any;
+ 
+
   
-  constructor ( private petshopService: PetshopService){}
+  
+  constructor ( private petshopService: PetshopService, router: Router){};
+  
   
   
   
   ngOnInit(): void {
     this.getClientes();
-    this.getTratamentos();
+    this.getTratamentos();        
   }
+
+ 
+   
 
   public getTratamentos():void{
     this.petshopService.getPet().subscribe(

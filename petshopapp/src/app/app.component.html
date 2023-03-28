@@ -4,9 +4,9 @@
 <header>
    <!-- Sidebar -->
    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse opcoes">
-     <div class="position-sticky">
+     <div class="position-sticky" >
        <div class="list-group list-group-flush mx-3 mt-4" >
-         <a routerLink="inicio" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2 " aria-current="true">
+         <a  routerLink="inicio" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2 " aria-current="true">
            <i class="fa-solid fa-house me-3"></i><span>Início</span>
          </a>
          <a routerLink="clientes" routerLinkActive="active-route" class="list-group-item list-group-item-action py-2 menus">
@@ -18,7 +18,7 @@
          <a  (click)="onOpenModal(null, 'addClient')" class="list-group-item list-group-item-action py-2 menus"><i
              class="fa-regular fa-plus fa-beat me-3 "></i><span>Novo Cliente</span></a>
          <a  class="list-group-item list-group-item-action py-2 menus">
-           <i class="fas fa-chart-pie fa-fw me-3 "></i><span>Relatórios</span>
+           <i class="fas fa-chart-pie fa-fw me-3 " ></i><span>Relatórios</span>
          </a>
        </div>
      </div>
@@ -268,5 +268,7 @@
    </div>
 </div>
 </div>
+
+
 <router-outlet></router-outlet>
 
