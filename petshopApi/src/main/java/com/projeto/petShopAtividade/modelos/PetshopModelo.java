@@ -47,6 +47,8 @@ public class PetshopModelo {
 
     private String telefone;
 
+    private String responsavel;
+
     private Float valor;
 
 
@@ -161,5 +163,13 @@ public class PetshopModelo {
 
     public void setValor(Float valor) {
         this.valor = valor;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
     }
 }

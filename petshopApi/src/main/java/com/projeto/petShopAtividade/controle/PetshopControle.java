@@ -8,6 +8,7 @@ import com.projeto.petShopAtividade.modelos.ClientePetshopModelo;
 import com.projeto.petShopAtividade.modelos.PetshopModelo;
 import com.projeto.petShopAtividade.servicos.ClientePetshopServico;
 import com.projeto.petShopAtividade.servicos.PetshopServico;
+import jakarta.mail.MessagingException;
 import jakarta.validation.Valid;
 import org.springframework.beans.BeanUtils;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,6 +18,7 @@ import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
@@ -46,16 +48,18 @@ public class PetshopControle {
     public ResponseEntity<Object> savePetshop(
             @RequestBody
             @Valid
-            PetshopDto petshopDto , ClientePetshopDto clientePetshopDto) {
-
+            PetshopDto petshopDto , ClientePetshopDto clientePetshopDto){
+        Optional<ClientePetshopModelo> clienteModelo = clientePetshopServico.findById(petshopDto.getClienteid());
         var petshopModelo = new PetshopModelo();
+        petshopDto.setResponsavel(clienteModelo.get().getNome());
         BeanUtils.copyProperties(petshopDto, petshopModelo);
 
         petshopModelo.setEntrada(LocalDateTime.from(LocalDateTime.now()));
         petshopModelo.setStatusTratamento(String.valueOf(StatusTratamento.PREPARANDO));
+        petshopModelo.setResponsavel(clienteModelo.get().getNome());
         String entradaMail = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd:MM:yyyy HH:mm:ss"));
         System.out.println(entradaMail);
-        Optional<ClientePetshopModelo> clienteModelo = clientePetshopServico.findById(petshopDto.getClienteid());
+
         petshopModelo.setClientePetshopModelo(clienteModelo.get());
 
 //        SimpleMailMessage message = new SimpleMailMessage();
@@ -132,5 +136,17 @@ public class PetshopControle {
 
     }
 
+    @GetMapping(value = "download/{id}")
+    public ResponseEntity<Object>getPdf(@PathVariable(value = "id") UUID id) throws IOException, MessagingException {
+        Optional<PetshopModelo> petshopModeloOptional = petshopServico.findById(id);
 
+        if (!petshopModeloOptional.isPresent()) {
+            return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encontrado");
+        }
+        petshopServico.gerarPdf(petshopModeloOptional.get().getNome(),petshopModeloOptional.get().getEspecie(),petshopModeloOptional.get().getRaca(),
+                petshopModeloOptional.get().getPeso(),petshopModeloOptional.get().getTratamento(),petshopModeloOptional.get().getTelefone(),
+                petshopModeloOptional.get().getClientePetshopModelo().getNome(),petshopModeloOptional.get().getValor());
+
+        return new ResponseEntity(HttpStatus.OK);
+    }
 }

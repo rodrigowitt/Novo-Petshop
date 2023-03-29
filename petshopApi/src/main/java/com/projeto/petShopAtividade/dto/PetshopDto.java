@@ -38,6 +38,9 @@ public class PetshopDto {
     private Float valor;
 
 
+    private String responsavel;
+
+
     public UUID getClienteid() {
         return clienteid;
     }
@@ -134,5 +137,13 @@ public class PetshopDto {
 
     public void setValor(Float valor) {
         this.valor = valor;
+    }
+
+    public String getResponsavel() {
+        return responsavel;
+    }
+
+    public void setResponsavel(String responsavel) {
+        this.responsavel = responsavel;
     }
 }

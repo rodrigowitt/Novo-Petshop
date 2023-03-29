@@ -129,10 +129,10 @@
                         </button>
                      </div>
                      <div class="modal-body">
-                        <p>Tem certeza que deseja gerar o documento de : {{docPet?.nome}} ?</p>
+                        <p>Deseja gerar o documento de : {{docPet?.nome}} ?</p>
                         <div class="text-center">
+                           <button (click)="onDocumentPet(docPet?.id)" class="btn btn-primary mr-2" data-dismiss="modal">Sim</button>
                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
-                           <button (click)="onDocumentPet(docPet?.id)" class="btn btn-danger ml-2" data-dismiss="modal">Sim</button>
                         </div>
                      </div>
                   </div>
