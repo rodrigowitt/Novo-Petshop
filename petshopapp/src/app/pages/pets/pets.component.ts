@@ -19,6 +19,7 @@ export class PetsComponent {
   public cliente: Cliente[] = [];
   public editPet : Petshop | null;
   public deletePet : Petshop | null;
+  public docPet: Petshop | null;
   
   constructor ( private petshopService: PetshopService){}
   
@@ -93,6 +94,19 @@ export class PetsComponent {
             )
           }
 
+          public onDocumentPet(petId: string | undefined) :void{
+            
+            this.petshopService.documentPet(petId).subscribe(
+              (response : void) =>{
+                this.getTratamentos();
+                window.open("../assets/Cadastro.pdf")
+                },
+                (error: HttpErrorResponse)=>{
+                  alert(error.message)
+                }
+            )
+          }
+
           
 
           public onOpenModal(petshop: Petshop | null, mode: String): void{
@@ -114,6 +128,10 @@ export class PetsComponent {
             if(mode === 'delete'){
               this.deletePet = petshop;
               button.setAttribute('data-target', '#deletePetModal2')
+            }
+            if(mode === 'docPet'){
+              this.docPet = petshop;
+              button.setAttribute('data-target', '#documentPetModal')
             }
             container?.appendChild(button);
             button.click();

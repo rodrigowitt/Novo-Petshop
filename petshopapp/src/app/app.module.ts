@@ -18,6 +18,8 @@ import { provideAnimations } from '@angular/platform-browser/animations';
 
 
 
+
+
 const routes: Routes = [
   
   { path: 'clientes', component: ClientesComponent },
@@ -36,6 +38,8 @@ const routes: Routes = [
     AppComponent,
     ClientesComponent,
     PetsComponent,
+    
+
     
     
   ],

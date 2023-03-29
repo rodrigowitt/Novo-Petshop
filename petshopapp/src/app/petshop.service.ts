@@ -41,4 +41,7 @@ public deletePet(petId: string | undefined): Observable<void>{
 public deleteCliente(clienteId: string | undefined): Observable<void>{
   return this.http.delete<void>(`${this.apiServerUrl}clientes/${clienteId}`)
 }
+public documentPet(petId: string | undefined): Observable<void>{
+   return this.http.get<void>(`${this.apiServerUrl}petshop/download/${petId}`)
+}
 }

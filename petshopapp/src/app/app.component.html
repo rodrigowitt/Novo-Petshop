@@ -38,7 +38,7 @@
        <!-- Brand -->
        
        <a class="navbar-brand" routerLink="inicio">
-         <img src="../assets/Pets_1200x1200.webp" height="100" alt="MDB Logo"
+         <img src="../assets/Pets_1200x1200.png" height="100" alt="MDB Logo"
            loading="lazy" />
        </a>      
      </div>
@@ -106,7 +106,7 @@
            <select class="form-select" aria-label="Default select example"  ngModel name="clienteid" required>
              <option *ngFor="let clientes of cliente" value="{{clientes.id}}"  id="clienteid">{{clientes.nome}}</option>
           </select>
-        </div>
+          </div>
           <div class="form-group">
            <label for="valor">Valor</label>
            <input type="text" ngModel name="valor" class="form-control" id="valor" placeholder="Valor" required>
