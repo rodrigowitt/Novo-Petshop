@@ -17,6 +17,9 @@ export class PetshopService {
   public getPet(): Observable<Petshop[]>{
     return this.http.get<Petshop[]>(`${this.apiServerUrl}petshop`)
 }
+public getRel(dias: string | undefined, status : string | undefined): Observable<Petshop[]>{
+  return this.http.get<Petshop[]>(`${this.apiServerUrl}petshop/relatorios/${dias}/${status}`)
+}
 public getClient(): Observable<Cliente[]>{
   return this.http.get<Cliente[]>(`${this.apiServerClientUrl}clientes`)
 }

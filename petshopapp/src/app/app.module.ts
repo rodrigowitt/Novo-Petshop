@@ -15,6 +15,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 
 
 
@@ -24,6 +25,7 @@ const routes: Routes = [
   
   { path: 'clientes', component: ClientesComponent },
   { path: 'inicio', component: PetsComponent },
+  { path: 'relatorios', component: RelatoriosComponent},
   { path: '', pathMatch:'full',redirectTo:'inicio'},
   
  
@@ -38,6 +40,7 @@ const routes: Routes = [
     AppComponent,
     ClientesComponent,
     PetsComponent,
+    RelatoriosComponent,
     
 
     

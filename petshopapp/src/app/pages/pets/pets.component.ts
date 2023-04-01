@@ -37,37 +37,6 @@ export class PetsComponent {
       )
      }
 
-     
-
-     public onAddPet(addForm: NgForm) : void{
-      document.getElementById('add-pet-form')?.click();
-        this.petshopService.addPet(addForm.value).subscribe(
-          (response: Petshop) => {
-            console.log(response)
-            addForm.reset();
-            this.getTratamentos();
-    
-          },
-          (error: HttpErrorResponse)=>{
-            alert(error.message)
-          }
-          )
-         
-        }
-        public onAddCliente(addForm: NgForm) : void{
-          document.getElementById('add-cliente-form')?.click();
-            this.petshopService.addClient(addForm.value).subscribe(
-              (response: Cliente) => {
-                console.log(response)
-                this.getTratamentos();
-                addForm.reset();
-        
-              },
-              (error: HttpErrorResponse)=>{
-                alert(error.message)
-              }
-              )
-            }
 
         public onUpdatePet(petshop: Petshop, petId : string | undefined) :void{
         

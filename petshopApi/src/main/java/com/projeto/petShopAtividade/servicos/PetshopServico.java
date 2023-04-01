@@ -18,18 +18,15 @@ import com.itextpdf.layout.property.TextAlignment;
 import com.projeto.petShopAtividade.modelos.PetshopModelo;
 import com.projeto.petShopAtividade.repositorios.PetshopRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
-import java.io.FileNotFoundException;
 import java.io.IOException;
-import java.net.MalformedURLException;
 import java.text.DecimalFormat;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
-import java.util.List;
-import java.util.Optional;
-import java.util.UUID;
+import java.util.*;
 
 @Service
 public class PetshopServico {
@@ -60,6 +57,19 @@ public class PetshopServico {
 
     public void delete(PetshopModelo petshopModelo) {
         petshopRepositorio.delete(petshopModelo);
+    }
+
+    public List<PetshopModelo> ultimosDias(String dias, String status) {
+        String sql = "SELECT *\n" +
+                "FROM tb_petshop\n" +
+                "WHERE entrada > current_date - interval '" + dias + "' day AND " +
+                "status_tratamento != '" + status+ "'";
+
+
+        List <PetshopModelo>  soma= jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PetshopModelo.class));
+        System.out.println(soma);
+
+        return soma;
     }
 
     public int calcularSoma() {
@@ -137,6 +147,13 @@ public class PetshopServico {
         document.close();
 
     }
+
+//    List<Message> getLastThreeDays() {
+//        // subtract 3 days from today
+//        LocalDate threeDaysAgoDate = LocalDate.now().minusDays(3);
+//        return this.petshopRepositorio.findAllWithDateAfter(threeDaysAgoDate);
+//
+//    }
 
 
 }

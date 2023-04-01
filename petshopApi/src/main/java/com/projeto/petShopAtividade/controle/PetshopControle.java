@@ -79,6 +79,13 @@ public class PetshopControle {
         return ResponseEntity.status(HttpStatus.CREATED).body(petshopServico.save(petshopModelo));
     }
 
+    @GetMapping(value = "/relatorios/{dias}/{status}")
+    public ResponseEntity<List<PetshopModelo>> getDataPetshop(@PathVariable(value = "dias")String dias,@PathVariable(value = "status") String status){
+        System.out.println("Ok");
+
+        return ResponseEntity.status(HttpStatus.OK).body(petshopServico.ultimosDias(dias,status));
+    }
+
     @GetMapping
     public ResponseEntity<List<PetshopModelo>> getAllPetshop() {
         //System.out.println(petshopServico.calcularSoma());
@@ -122,14 +129,14 @@ public class PetshopControle {
 
         petshopModelo.setId(petshopModeloOptional.get().getId());
 
-        if(!petshopModelo.getStatusTratamento().equals(("PREPARANDO"))) {
-            SimpleMailMessage message = new SimpleMailMessage();
-            message.setText("Olá " + petshopDto.getNome() + ", houve uma atualização no tratamento "+petshopModelo.getTratamento() +" para " + petshopModelo.getStatusTratamento() + " do seu pet " + petshopDto.getNome() + "!");
-            message.setTo(clientePetshopDto.getEmail());
-            message.setFrom("rodrigowitthoeft95@gmail.com");
-            message.setSubject("Petshop");
-            mailSender.send(message);
-        }
+//        if(!petshopModelo.getStatusTratamento().equals(("PREPARANDO"))) {
+//            SimpleMailMessage message = new SimpleMailMessage();
+//            message.setText("Olá " + petshopDto.getNome() + ", houve uma atualização no tratamento "+petshopModelo.getTratamento() +" para " + petshopModelo.getStatusTratamento() + " do seu pet " + petshopDto.getNome() + "!");
+//            message.setTo(clientePetshopDto.getEmail());
+//            message.setFrom("rodrigowitthoeft95@gmail.com");
+//            message.setSubject("Petshop");
+//            mailSender.send(message);
+//        }
 
 
             return ResponseEntity.status(HttpStatus.OK).body(petshopServico.save(petshopModelo));
