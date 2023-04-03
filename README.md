@@ -14,7 +14,14 @@
     <li>Spring</li>
     <li>PostgreSQL</li>
 </ul>
-
+ <br>
+ <h3>Recursos Disponíveis:<h3/>
+<ul>
+    <li>Adicionar, deletar e atualizar lista de serviços</li>
+    <li>Adicionar, deletar e atualizar lista de clientes</li>
+    <li>Gerar relatórios de serviços realizados</li>
+    <li>Buscar serviços por mês ou status</li>
+</ul>
 
 
 
