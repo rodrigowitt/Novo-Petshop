@@ -14,7 +14,6 @@
     top: 0;
     bottom: 0;
     left: 0;
-    padding: 58px 0 0; /* Height of navbar */
     box-shadow: 0 2px 5px 0 rgb(0 0 0 / 5%), 0 2px 10px 0 rgb(0 0 0 / 5%);
     width: 190px;
     z-index: 600;
@@ -23,11 +22,16 @@
    .menus{
     color: white!important;
     background-color: #212529!important;
+    margin-top: 10px;
    }
    .menus:hover{
     cursor: pointer;
     background-color: white!important;
     color: black !important;
+    border-top-left-radius: 30px;
+    border-top-right-radius: 30px;
+    border-bottom-left-radius: 30px;
+    border-bottom-right-radius: 30px;
    }
    .ripples{
 
@@ -42,17 +46,23 @@
    .ativo{
     background-color: white;
     color: black;
+    
    }
 
     .navegacao{
         margin-left: 95vh;
     }
     .navbar-brand{
-        margin-left: 5vh;
+        margin-left: 30px;
+        margin-top: 10px;
     }
 
     .active-route {
         background-color: white !important;
-        color: black !important;    
+        color: black !important; 
+        border-top-left-radius: 30px;
+        border-top-right-radius: 30px;
+        border-bottom-left-radius: 30px;
+        border-bottom-right-radius: 30px;   
     }
   

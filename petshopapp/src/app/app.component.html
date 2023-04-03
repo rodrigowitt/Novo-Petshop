@@ -5,8 +5,12 @@
    <!-- Sidebar -->
    <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse opcoes">
      <div class="position-sticky" >
-       <div class="list-group list-group-flush mx-3 mt-4" >
-         <a  routerLink="inicio" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2 " aria-current="true">
+       <div class="list-group list-group-flush mx-3" >
+         <a class="navbar-brand" routerLink="inicio">
+            <img src="../assets/Pets_1200x1200.png" height="91" alt="Logo Petshop"
+              loading="lazy" />
+          </a>
+         <a  routerLink="inicio" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2" aria-current="true">
            <i class="fa-solid fa-house me-3"></i><span>Início</span>
          </a>
          <a routerLink="clientes" routerLinkActive="active-route" class="list-group-item list-group-item-action py-2 menus">
@@ -37,21 +41,12 @@
  
        <!-- Brand -->
        
-       <a class="navbar-brand" routerLink="inicio">
-         <img src="../assets/Pets_1200x1200.png" height="100" alt="MDB Logo"
-           loading="lazy" />
-       </a>      
+           
      </div>
    </nav>
   
  </header>
- <!--Main Navigation-->
- 
- <!--Main layout-->
- <main style="margin-top: 58px;">
-   <div class="container pt-4"></div>
- </main>
- <!--Main layout-->
+
  
  <div class="modal fade" id="addPetModal" tabindex="-1" role="dialog" aria-labelledby="addPetModalLabel" aria-hidden="true">
   <div class="modal-dialog" role="document" id="main-container">

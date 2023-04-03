@@ -1,6 +1,11 @@
 
-<input type="search" (ngModelChange)="searchTratamentos(key.value)" #key="ngModel" ngModel
-            name="key" id="searchName"class="form-control  w-25 buscador" placeholder="Buscar pet..." required>
+<div class="buscador ">
+
+   <input type="search" (ngModelChange)="searchTratamentos(key.value)" #key="ngModel" ngModel
+               name="key" id="searchName"class="form-control w-25" placeholder="Buscar pet..." required>
+               <i class="fa-sharp fa-solid fa-magnifying-glass tupla" data-toggle="tooltip" ></i>
+
+</div>
 <table class="table table-striped table-hover table-primary col-11" id="main-container" >
     <thead>
        <tr>
