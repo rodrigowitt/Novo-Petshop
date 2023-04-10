@@ -74,10 +74,33 @@
                  <label for="tratamento">Tratamento</label>
                  <input type="text" ngModel="{{editPet?.tratamento}}" name="tratamento" class="form-control" id="tratamento" placeholder="Tratamento">
                </div>
-               <div class="form-group">
+               <div *ngIf="editPet?.statusTratamento == 'PREPARANDO'"  class="form-group">
                  <label for="statusTratamento">Status do Tratamento</label>
-                 <input type="text" ngModel="{{editPet?.statusTratamento}}" name="statusTratamento" class="form-control" id="statusTratamento" placeholder="statusTratamento">
+                 <select class="form-select" ngModel name="statusTratamento" required>
+                  <option value="" >{{editPet?.statusTratamento}}</option>
+                  <option value="FINALIZADO"  id="statusTratamento">FINALIZADO</option>
+                  <option value="CANCELADO"  id="statusTratamento">CANCELADO</option>
+                 </select>
+                 
                </div>
+               <div *ngIf="editPet?.statusTratamento == 'FINALIZADO'"  class="form-group">
+                  <label for="statusTratamento">Status do Tratamento</label>
+                  <select class="form-select" ngModel name="statusTratamento" required>
+                   <option value="" >{{editPet?.statusTratamento}}</option>
+                   <option value="PREPARANDO"  id="statusTratamento">PREPARANDO</option>
+                   <option value="CANCELADO"  id="statusTratamento">CANCELADO</option>
+                  </select>
+                  
+                </div>
+                <div *ngIf="editPet?.statusTratamento == 'CANCELADO'"  class="form-group">
+                  <label for="statusTratamento">Status do Tratamento</label>
+                  <select class="form-select" ngModel name="statusTratamento" required>
+                   <option value="" >{{editPet?.statusTratamento}}</option>
+                   <option value="PREPARANDO"  id="statusTratamento">PREPARANDO</option>
+                   <option value="FINALIZADO"  id="statusTratamento">FINALIZADO</option>
+                  </select>
+                  
+                </div>
                    <div class="form-group">
                         <label for="email">Email</label>
                         <input type="email" ngModel="{{editPet?.email}}" name="email" class="form-control" id="email" placeholder="Email">

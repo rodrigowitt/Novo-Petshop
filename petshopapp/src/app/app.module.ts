@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
@@ -16,7 +16,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatInputModule } from '@angular/material/input';
 import { provideAnimations } from '@angular/platform-browser/animations';
 import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
-
+import { InicioComponent } from './pages/inicio/inicio.component';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { ReplacePipe } from './pages/inicio/replace.pipe';
+import pt from '@angular/common/locales/pt';
 
 
 
@@ -24,8 +27,9 @@ import { RelatoriosComponent } from './pages/relatorios/relatorios.component';
 const routes: Routes = [
   
   { path: 'clientes', component: ClientesComponent },
-  { path: 'inicio', component: PetsComponent },
+  { path: 'pets', component: PetsComponent },
   { path: 'relatorios', component: RelatoriosComponent},
+  { path: 'inicio', component: InicioComponent},
   { path: '', pathMatch:'full',redirectTo:'inicio'},
   
  
@@ -41,6 +45,8 @@ const routes: Routes = [
     ClientesComponent,
     PetsComponent,
     RelatoriosComponent,
+    InicioComponent,
+    ReplacePipe
     
 
     
@@ -56,15 +62,19 @@ const routes: Routes = [
     MatNativeDateModule, 
     MatInputModule,
     RouterModule.forRoot(routes),
+    CommonModule,
     
     
   ],
-  providers: [PetshopService, provideAnimations()],
+  providers: [PetshopService, provideAnimations(),{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],
   schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
-export class AppModule { }
-
+export class AppModule {
+  constructor() {
+    registerLocaleData(pt);
+ }
+}
 
 
 

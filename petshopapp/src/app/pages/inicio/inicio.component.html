@@ -1,0 +1,89 @@
+<div class="row">
+    <div class="col-sm-2 card1">
+      <div class="card">
+        <div class="card-body" >
+          <h5 class="card-title titulo">{{pet.length}}</h5>
+          <p class="card-text d-flex descricao">Serviços do Mês</p><i class="fa-solid fa-briefcase botao01" ></i>
+          
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2 ml-4">
+      <div class="card">
+        <div class="card-body">
+          <h5 class="card-title titulo">R$ {{lucro| number: '1.2-2' : 'pt-BR'}}</h5>
+          <p class="card-text descricao">Lucro do Mês</p>
+          <i class="fa-solid fa-hand-holding-dollar botao01"></i>
+        </div>
+      </div>
+    </div>
+    <div class="col-sm-2 ml-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title titulo">{{cliente.length}}</h5>
+            <p class="card-text descricao">Clientes Cadastrados</p>
+            <i class="fa-solid fa-users botao01"></i>
+          </div>
+        </div>
+      </div>
+      <div class="col-sm-2 ml-4">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title titulo">{{pet2.length}}</h5>
+            <p class="card-text descricao">Pets Cadastrados</p>
+            <i class="fa-solid fa-paw botao01"></i>
+          </div>
+        </div>
+      </div>
+</div>
+
+ 
+<div class="row">
+  <div class="col-6 tabela1 mt-4">
+    <div class="card mb-n cardR">
+      <p class="card-title titulo2 mb-4 text-center">Serviços Recentes</p>
+      <table class="table table-hover bg-transparent" id="main-container">
+            <tr>
+              <th>Nome</th>
+              <th>Responsável</th>
+              <th>Tratamento</th>
+              <th>Preço</th>
+              <th>Status</th>
+           </tr>
+           <tbody>
+            <tr *ngFor="let petshop of pet.slice(0, 10)">
+               <td class="bg-transparent">{{petshop.nome}}</td>
+               <td>{{petshop.responsavel}}</td>
+               <td>{{petshop.tratamento}}</td>
+               <td>{{petshop.valor}}</td>
+               <td  class="text-center"  [ngClass]="getClasseCor(petshop.statusTratamento)">{{petshop.statusTratamento}}</td>
+            </tr>
+          </table>
+    </div>
+  </div>
+  
+
+  <div class="tabela2 mt-4">
+    <div class="card mb-n cardL">
+      <p class="card-title titulo2 mb-4 text-center">Clientes Recentes</p>
+      <table class="table table-hover " id="main-container2">
+            <tr>
+              <th>Nome</th>
+              <th>Telefone</th>
+              <th>Cidade</th>
+           </tr>
+           <tbody>
+            <tr *ngFor="let clientes of cliente.slice(0, 10)">
+               <td class="bg-transparent">{{clientes.nome}}</td>
+               <td>{{clientes.telefone}}</td>
+               <td>{{clientes.cidade}}</td>
+            </tr>
+          </table>
+    </div>
+    </div>
+  </div>
+  
+
+
+
+

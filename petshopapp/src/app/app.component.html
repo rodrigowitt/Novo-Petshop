@@ -3,18 +3,21 @@
 <!--Main Navigation-->
 <header>
    <!-- Sidebar -->
-   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse opcoes">
+   <nav id="sidebarMenu" class="collapse d-lg-block sidebar collapse opcoes ">
      <div class="position-sticky" >
        <div class="list-group list-group-flush mx-3" >
          <a class="navbar-brand" routerLink="inicio">
             <img src="../assets/Pets_1200x1200.png" height="91" alt="Logo Petshop"
               loading="lazy" />
           </a>
-         <a  routerLink="inicio" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2" aria-current="true">
-           <i class="fa-solid fa-house me-3"></i><span>Início</span>
+          <a routerLink="inicio" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2" aria-current="true">
+            <i class="fa-solid fa-house me-3"></i><span>Início</span>
+          </a>
+         <a  routerLink="pets" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2" aria-current="true">
+           <i class="fa-solid fa-paw me-3"></i><span>Pets</span>
          </a>
          <a routerLink="clientes" routerLinkActive="active-route" class="list-group-item list-group-item-action py-2 menus">
-           <i class="fa-solid fa-list me-3"></i><span>Clientes</span>
+           <i class="fa-solid fa-person me-3"></i><span>Clientes</span>
          </a>
 
          <a (click)="onOpenModal(null, 'add')"  class="list-group-item list-group-item-action py-2 menus"><i
@@ -146,6 +149,10 @@
          <input type="text" ngModel name="nascimento" class="form-control" id="nascimento" placeholder="Nascimento" required>
       </div>
       <div class="form-group">
+         <label for="cpf">CPF</label>
+         <input type="text" ngModel name="cpf" class="form-control" id="cpf" placeholder="CPF" required>
+      </div>
+      <div class="form-group">
        <label for="rua">Rua</label>
        <input type="text" ngModel name="rua" class="form-control" id="rua" placeholder="Rua" required>
     </div>
@@ -221,6 +228,7 @@
       <div class="form-group">
         <label for="statusTratamento">Status do Tratamento</label>
         <input type="text" ngModel="{{editPet?.statusTratamento}}" name="statusTratamento" class="form-control" id="statusTratamento" placeholder="statusTratamento">
+        
       </div>
           <div class="form-group">
                <label for="email">Email</label>
@@ -266,4 +274,4 @@
 
 
 <router-outlet></router-outlet>
-
+<footer class="text"> Feito por Rodrigo Witthoeft</footer>

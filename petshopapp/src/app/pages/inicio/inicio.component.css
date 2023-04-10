@@ -1,0 +1,81 @@
+.card1{
+    margin-left: 39vh;
+   
+    
+}
+.card-body{
+    height: 120px!important;
+}
+.botao01{
+    position: relative;
+    font-size: 3rem;
+    margin-left: 21vh;
+    bottom: 7.5vh;
+    color: #8a8a8ac5
+}
+.titulo{
+    font-size: 2.5rem;
+    color: #124ac4;
+}
+.titulo2{
+    font-size: 1.5rem;
+    color: #124ac4;
+    font-weight: bold;
+}
+.descricao{
+    font-size: 1.5 rem;
+}
+
+.tabela1{
+    margin-left: 21.2vh!important;
+    
+}
+.tabela2{
+    margin-left: 0vh!important;
+    width: 78vh;
+}
+
+.table th{
+    margin-right: 0px!important;
+    margin-bottom: 0px!important;
+    margin: 0!important;
+}
+.table td{
+   align-items: left!important;
+    
+}
+
+table.table tr th:last-child {
+    width: 80px;
+}
+.cardR{
+    height: 605px;
+}
+.cardL{
+    height: 603px;
+}
+.preparando{
+    display: inline-block;
+    background-color: #0374e6;
+    color: #fff!important;
+    border-radius: 5px;
+}
+
+.finalizado{
+    display: inline-block;
+    font-size: 0.9rem;
+    background-color: #03e634;
+    color: #fff!important;
+    border-radius: 5px;
+    width: 130px;
+    font-weight: bold;
+}
+.cancelado{
+    display: inline-block;
+    font-size: 0.9rem;
+    background-color: #e60303;
+    color: #fff!important;
+    border-radius: 5px;
+    width: 130px;
+    font-weight: bold;
+}

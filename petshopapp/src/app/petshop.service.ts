@@ -17,8 +17,20 @@ export class PetshopService {
   public getPet(): Observable<Petshop[]>{
     return this.http.get<Petshop[]>(`${this.apiServerUrl}petshop`)
 }
+public getLucro(): Observable<number>{
+  return this.http.get<number>(`${this.apiServerUrl}petshop/lucro`)
+}
+public getTotalPet(): Observable<Petshop[]>{
+  return this.http.get<Petshop[]>(`${this.apiServerUrl}petshop`)
+}
 public getRel(dias: string | undefined, status : string | undefined): Observable<Petshop[]>{
   return this.http.get<Petshop[]>(`${this.apiServerUrl}petshop/relatorios/${dias}/${status}`)
+}
+public getRecentes(): Observable<Petshop[]>{
+  return this.http.get<Petshop[]>(`${this.apiServerUrl}petshop/recentes`)
+}
+public getClientesRecentes(): Observable<Cliente[]>{
+  return this.http.get<Cliente[]>(`${this.apiServerUrl}clientes/recentes`)
 }
 public getClient(): Observable<Cliente[]>{
   return this.http.get<Cliente[]>(`${this.apiServerClientUrl}clientes`)

@@ -123,6 +123,12 @@ export class PetsComponent {
             }
           }
 
+          getStatus(valor: any): any {
+            
+           console.log(valor)
+           return valor;
+          }
+
 
 
     
