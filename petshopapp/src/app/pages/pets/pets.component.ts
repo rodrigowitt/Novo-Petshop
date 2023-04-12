@@ -15,11 +15,13 @@ import { PetshopService } from 'src/app/petshop.service';
   styleUrls: ['./pets.component.css']
 })
 export class PetsComponent {
+  public selectedValue: string ;
   public pet : Petshop [] = [];
   public cliente: Cliente[] = [];
-  public editPet : Petshop | null;
+  public editPet ?: Petshop | null;
   public deletePet : Petshop | null;
   public docPet: Petshop | null;
+  public nrPreparando: any;
   
   constructor ( private petshopService: PetshopService){}
   
@@ -27,7 +29,6 @@ export class PetsComponent {
     this.getTratamentos();
     
   }
-
   public getTratamentos():void{
     this.petshopService.getPet().subscribe(
       (response: Petshop[])=>{
@@ -44,6 +45,7 @@ export class PetsComponent {
             (response: Petshop)=>{
               console.log(response);
               this.getTratamentos();
+              
             },
             (error: HttpErrorResponse)=>{
               alert(error.message)
@@ -92,6 +94,7 @@ export class PetsComponent {
             }
             if(mode === 'update'){
               this.editPet = petshop;
+              this.nrPreparando = petshop?.statusTratamento;
               button.setAttribute('data-target', '#updatePetModal2')
             }
             if(mode === 'delete'){
@@ -123,10 +126,16 @@ export class PetsComponent {
             }
           }
 
-          getStatus(valor: any): any {
-            
-           console.log(valor)
-           return valor;
+          getClasseCor(valor: String): string {
+            if (valor == "PREPARANDO") {
+              return 'preparando';
+            } else if (valor == "FINALIZADO") {
+              return 'finalizado';
+            } else if (valor == "CANCELADO") {
+              return 'cancelado';
+            } else {
+              return '';
+            }
           }
 
 

@@ -65,6 +65,8 @@ const routes: Routes = [
     CommonModule,
     
     
+    
+    
   ],
   providers: [PetshopService, provideAnimations(),{ provide: LOCALE_ID, useValue: 'pt-BR' }],
   bootstrap: [AppComponent],
