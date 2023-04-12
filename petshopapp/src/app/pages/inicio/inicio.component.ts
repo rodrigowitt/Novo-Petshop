@@ -1,8 +1,10 @@
 import { HttpErrorResponse } from '@angular/common/http';
-import { Component } from '@angular/core';
+import { Component, ElementRef, ViewChild } from '@angular/core';
 import { Petshop, Cliente } from 'src/app/petshop';
 import { PetshopService } from 'src/app/petshop.service';
-import { CommonModule } from '@angular/common';
+
+
+
 
 @Component({
   selector: 'app-inicio',
@@ -16,8 +18,9 @@ export class InicioComponent {
   public lucro: number  ;
 
   constructor ( private petshopService: PetshopService){}
-  
+ 
   ngOnInit(): void {
+
     this.getRecentes();
     this.getClientesRecentes();
     this.getServicos();
@@ -80,4 +83,5 @@ export class InicioComponent {
     getResultado(valor: number) : number{
       return valor;
     }
+
 }

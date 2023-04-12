@@ -49,7 +49,7 @@ table.table tr th:last-child {
     width: 80px;
 }
 .cardR{
-    height: 605px;
+    height: 610px;
 }
 .cardL{
     height: 603px;
@@ -78,4 +78,7 @@ table.table tr th:last-child {
     border-radius: 5px;
     width: 130px;
     font-weight: bold;
+}
+.grafico{
+    margin-left: 80vh;
 }
