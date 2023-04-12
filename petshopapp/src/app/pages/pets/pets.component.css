@@ -67,14 +67,12 @@ th {border:none!important}
     border: 0px; 
 }
 .preparando{
-    
     background-color: #0374e6;
     color: #fff!important;
     border-radius: 5px;
     width: 130px;
 }
 .finalizado{
-    
     font-size: 0.9rem;
     background-color: #03e634;
     color: #fff!important;
@@ -83,7 +81,6 @@ th {border:none!important}
     font-weight: bold;
 }
 .cancelado{
-    
     font-size: 0.9rem;
     background-color: #e60303;
     color: #fff!important;
