@@ -27,7 +27,10 @@
                <td class="text-center elemento1"  [ngClass]="getClasseCor(petshop.statusTratamento)">{{petshop.statusTratamento}}</td>
                <td class="text-center">{{petshop.entrada}}</td>
                <td>{{petshop.valor}}</td>
+               
+               
                <td >
+                  <a href="https://api.whatsapp.com/send?phone=55{{petshop.contato}}" target="_blank"> <i class="fa-brands fa-whatsapp" style="color: #48c77f;" title="Whatsapp" ></i></a>
                   <a (click)="onOpenModal(petshop, 'docPet')" href="#" class="" data-toggle="modal"><i class="material-icons fa-solid fa-file" data-toggle="tooltip" title="Gerar Documento"></i></a>
                   <a (click)="onOpenModal(petshop, 'update')" href="#" class="editar" data-toggle="modal"><i class="material-icons fa fa-pencil" data-toggle="tooltip" title="Editar"></i></a>
                   <a (click)="onOpenModal(petshop, 'delete')" href="#" class="deletar" data-toggle="modal"><i class="material-icons fa fa-times" data-toggle="tooltip" title="Deletar"></i></a>
@@ -102,13 +105,15 @@
                      <option value="PREPARANDO"  id="statusTratamento">PREPARANDO</option>
                   </select>
                 </div>
-               
-
-                
                      <div class="form-group">
                         <label for="responsavel">Responsável</label>
                         <input type="text" ngModel="{{editPet?.responsavel}}" name="responsavel" class="form-control" id="responsavel" name="responsavel" placeholder="Telefone">
                      </div>
+                     <div class="form-group">
+                        <label for="contato">Contato</label>
+                        <input type="text" ngModel="{{editPet?.contato}}" name="contato" class="form-control" id="contato" name="contato" >
+                     </div>
+               
                      <div class="form-group">
                        <label for="valor">Valor</label>
                        <input type="text" ngModel="{{editPet?.valor}}" name="valor" class="form-control" id="valor" name="valor" placeholder="Valor">

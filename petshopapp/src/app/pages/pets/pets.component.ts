@@ -22,6 +22,7 @@ export class PetsComponent {
   public deletePet : Petshop | null;
   public docPet: Petshop | null;
   public nrPreparando: any;
+  public telefone: any;
   
   constructor ( private petshopService: PetshopService){}
   
@@ -33,6 +34,7 @@ export class PetsComponent {
     this.petshopService.getPet().subscribe(
       (response: Petshop[])=>{
         this.pet = response;
+        
       }, (error: HttpErrorResponse) => {alert(error.message)}
     
       )

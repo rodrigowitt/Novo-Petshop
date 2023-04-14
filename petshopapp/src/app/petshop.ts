@@ -10,8 +10,7 @@ export interface Petshop{
     responsavel: string;
     tratamento: string;
     statusTratamento: string;
-    email: string;
-    telefone: string;
+    contato: string;
     clienteid: string;
     valor: number;
 }

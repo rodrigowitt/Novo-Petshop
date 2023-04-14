@@ -16,7 +16,7 @@ export class InicioComponent {
   public pet2: Petshop[] = [];
   public cliente: Cliente[] = [];
   public lucro: number  ;
-
+  
   constructor ( private petshopService: PetshopService){}
  
   ngOnInit(): void {

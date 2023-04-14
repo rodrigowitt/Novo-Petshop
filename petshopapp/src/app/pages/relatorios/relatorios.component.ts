@@ -24,7 +24,6 @@ export class RelatoriosComponent {
     this.petshopService.getRel(valorSelecionado,statusSelecionado).subscribe(
       (response: Petshop[])=>{
         this.pet = response;
-        console.log(response)
       }, (error: HttpErrorResponse) => {alert(error.message)}
     
       )
@@ -111,6 +110,19 @@ export class RelatoriosComponent {
         this.pet = results;
         if(results.length === 0 || !key){
           this.getRelatorios(this.valorSelecionado, this.statusSelecionado);
+        }
+      }
+
+
+      getClasseCor(valor: String): string {
+        if (valor == "PREPARANDO") {
+          return 'preparando';
+        } else if (valor == "FINALIZADO") {
+          return 'finalizado';
+        } else if (valor == "CANCELADO") {
+          return 'cancelado';
+        } else {
+          return '';
         }
       }
       

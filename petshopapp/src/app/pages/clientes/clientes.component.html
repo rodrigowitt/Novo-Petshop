@@ -1,34 +1,46 @@
 <div class="buscador ">
 
    <input type="search" (ngModelChange)="searchClientes(key.value)" #key="ngModel" ngModel
-               name="key" id="searchName"class="form-control w-25" placeholder="Buscar pet..." required>
+               name="key" id="searchName"class="form-control w-25" placeholder="Buscar cliente..." required>
                <i class="fa-sharp fa-solid fa-magnifying-glass tupla" data-toggle="tooltip" ></i>
 
 </div>
-<table class="table table-striped table-hover table-primary col-11" id="main-container">
-    <thead>
-       <tr>
-          <th>Nome</th>
-          <th>Cep</th>
-          <th>Bairro</th>
-          <th>Cidade</th>
-          <th>Rua</th>
-          <th>Ações</th>
-       </tr>
-      </thead>
-      <tbody>
+
+<div class="table">
+<div class="card">
+   <table class="table-hover" id="main-container">
+   <tr>
+      <th>Nome</th>
+      <th>Telefone</th>
+      <th>Cep</th>
+      <th>Bairro</th>
+      <th>Cidade</th>
+      <th>Rua</th>
+      <th>Ações</th>
+   </tr>
+
+   <tbody>
       <tr *ngFor="let clientes of cliente">
          <td>{{clientes.nome}}</td>
-         
+         <td>{{clientes.telefone}}</td>
          <td>{{clientes.cep}}</td>
          <td>{{clientes.bairro}}</td>
          <td>{{clientes.cidade}}</td>
          <td>{{clientes.rua}}</td>
          <td >
-            <a (click)="onOpenModal(clientes, 'update')" href="#" class="edit" data-toggle="modal"><i class="material-icons fa fa-pencil" data-toggle="tooltip" title="Editar"></i></a>
-            <a (click)="onOpenModal(clientes, 'delete')" href="#" class="delete" data-toggle="modal"><i class="material-icons fa fa-times" data-toggle="tooltip" title="Gerar Documento"></i></a>
+            <a href="https://api.whatsapp.com/send?phone=55{{clientes.telefone}}" target="_blank"> <i class="fa-brands fa-whatsapp" style="color: #48c77f;" title="Whatsapp" ></i></a>
+            <a (click)="onOpenModal(clientes, 'update')" href="#" class="editar" data-toggle="modal"><i class="material-icons fa fa-pencil" data-toggle="tooltip" title="Editar"></i></a>
+            <a (click)="onOpenModal(clientes, 'delete')" href="#" class="deletar" data-toggle="modal"><i class="material-icons fa fa-times" data-toggle="tooltip" title="Gerar Documento"></i></a>
          </td>
       </tr>
+
+   </table>
+
+</div>
+
+</div>
+
+
 
       <div class="modal fade" id="updateClientModal" tabindex="-1" role="dialog" aria-labelledby="petshopEditModalLabel" aria-hidden="true">
          <div class="modal-dialog" role="document">

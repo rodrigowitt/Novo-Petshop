@@ -9,9 +9,10 @@
       </select>
       <select class=" d-flex form-select col-6 w-25 buscador" [(ngModel)]="statusSelecionado">
         <option [ngValue]="undefined" [disabled]="true" >Selecione o status para o relatório</option>
-        <option value="FINALIZADO">Preparando</option>
-        <option value="PREPARANDO">Finalizado</option>
-        <option value="x">Todos</option>
+        <option value="PREPARANDO">Preparando</option>
+        <option value="FINALIZADO">Finalizado</option>
+        <option value="CANCELADO">Cancelado</option>
+        <option value="TODOS">Todos</option>
       </select>
 
       <button [disabled]="!valorSelecionado || !statusSelecionado"  (click)="getRelatorios(valorSelecionado,statusSelecionado)" type="button"  data-dismiss="modal" class="btn btn-dark botao" 
@@ -26,32 +27,41 @@
                <i class="fa-sharp fa-solid fa-magnifying-glass tupla" data-toggle="tooltip" ></i>
 
 </div>
-<table class="table table-striped table-hover table-primary col-11 " id="main-container" >
-  <thead>
-     <tr>
-        <th>Nome</th>
-        <th>Responsavel</th>
-        <th>Tratamento</th>
-        <th>Status</th>
-        <th>Entrada</th>
-        <th>Ações</th>
-     </tr>
-    </thead>
+<div class="table">
+   <div class="card">
+      <table class="table-hover" id="main-container" >
+         <tr>
+            <th>Nome</th>
+            <th>Responsavel</th>
+            <th>Tratamento</th>
+            <th class="colstatus">Status</th>
+            <th class="text-center">Entrada</th>
+            <th>Valor</th>
+            <th>Ações</th>
+         </tr>
 
-    <tbody>
-      <tr *ngFor="let petshop of pet">
-        <td>{{petshop.nome}}</td>
-        <td>{{petshop.responsavel}}</td>
-        <td>{{petshop.tratamento}}</td>
-        <td>{{petshop.statusTratamento}}</td>
-        <td>{{petshop.entrada}}</td>
-        <td >
-           <a (click)="onOpenModal(petshop, 'docPet')" href="#" class="" data-toggle="modal"><i class="material-icons fa-solid fa-file" data-toggle="tooltip" title="Gerar Documento"></i></a>
-           <a (click)="onOpenModal(petshop, 'update')" href="#" class="edit" data-toggle="modal"><i class="material-icons fa fa-pencil" data-toggle="tooltip" title="Editar"></i></a>
-           <a (click)="onOpenModal(petshop, 'delete')" href="#" class="delete" data-toggle="modal"><i class="material-icons fa fa-times" data-toggle="tooltip" title="Deletar"></i></a>
-        </td>
-        
-     </tr>
+         <tbody>
+            <tr *ngFor="let petshop of pet">
+               <td>{{petshop.nome}}</td>
+               <td>{{petshop.responsavel}}</td>
+               <td>{{petshop.tratamento}}</td>
+               <td class="text-center elemento1"  [ngClass]="getClasseCor(petshop.statusTratamento)">{{petshop.statusTratamento}}</td>
+               <td class="text-center">{{petshop.entrada}}</td>
+               <td>{{petshop.valor}}</td>
+               
+               
+               <td >
+                  <a href="https://api.whatsapp.com/send?phone=55{{petshop.contato}}" target="_blank"> <i class="fa-brands fa-whatsapp" style="color: #48c77f;" title="Whatsapp" ></i></a>
+                  <a (click)="onOpenModal(petshop, 'docPet')" href="#" class="" data-toggle="modal"><i class="material-icons fa-solid fa-file" data-toggle="tooltip" title="Gerar Documento"></i></a>
+                  <a (click)="onOpenModal(petshop, 'update')" href="#" class="editar" data-toggle="modal"><i class="material-icons fa fa-pencil" data-toggle="tooltip" title="Editar"></i></a>
+                  <a (click)="onOpenModal(petshop, 'delete')" href="#" class="deletar" data-toggle="modal"><i class="material-icons fa fa-times" data-toggle="tooltip" title="Deletar"></i></a>
+               </td>
+               
+            </tr>
+      </table>
+   </div>
+</div>
+
 
        <div class="modal fade" id="updatePetModal3" tabindex="-1" role="dialog" aria-labelledby="relatorioEditModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -71,7 +81,7 @@
                     <input type="hidden" ngModel="{{editPet?.id}}" name="id" class="form-control" id="id" placeholder="Email">
                     <div class="form-group">
                        <label for="especie">Espécie:</label>
-                       <input type="text" ngModel="{{editPet?.email}}" name="especie" class="form-control" id="especie" placeholder="Especie">
+                       <input type="text" ngModel="{{editPet?.especie}}" name="especie" class="form-control" id="especie" placeholder="Especie">
                     </div>
                     <div class="form-group">
                       <label for="raca">Raça</label>
@@ -97,14 +107,6 @@
                 <label for="statusTratamento">Status do Tratamento</label>
                 <input type="text" ngModel="{{editPet?.statusTratamento}}" name="statusTratamento" class="form-control" id="statusTratamento" placeholder="statusTratamento">
               </div>
-                  <div class="form-group">
-                       <label for="email">Email</label>
-                       <input type="email" ngModel="{{editPet?.email}}" name="email" class="form-control" id="email" placeholder="Email">
-                  </div>
-                    <div class="form-group">
-                       <label for="telefone">Telefone</label>
-                       <input type="text" ngModel="{{editPet?.telefone}}" name="telefone" class="form-control" id="telefone" name="telefone" placeholder="Telefone">
-                    </div>
                     <div class="form-group">
                        <label for="responsavel">Responsável</label>
                        <input type="text" ngModel="{{editPet?.responsavel}}" name="responsavel" class="form-control" id="responsavel" name="responsavel" placeholder="Telefone">
