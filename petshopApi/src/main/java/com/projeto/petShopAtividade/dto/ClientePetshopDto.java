@@ -3,6 +3,7 @@ package com.projeto.petShopAtividade.dto;
 import jakarta.persistence.CascadeType;
 import jakarta.persistence.OneToOne;
 import jakarta.validation.constraints.NotBlank;
+import org.hibernate.validator.constraints.br.CPF;
 
 public class ClientePetshopDto {
     @NotBlank
@@ -13,6 +14,9 @@ public class ClientePetshopDto {
     @NotBlank
     private String email;
     @NotBlank
+    @CPF
+    private String cpf;
+    @NotBlank
     private String nascimento;
     @NotBlank
     private String rua;
@@ -22,6 +26,7 @@ public class ClientePetshopDto {
     private String bairro;
     @NotBlank
     private String cep;
+
 
 
     public String getTelefone() {
@@ -87,4 +92,14 @@ public class ClientePetshopDto {
     public void setCep(String cep) {
         this.cep = cep;
     }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
+    }
+
+
 }

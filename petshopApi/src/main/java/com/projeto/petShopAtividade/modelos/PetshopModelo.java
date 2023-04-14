@@ -13,12 +13,12 @@ import java.util.UUID;
 public class PetshopModelo {
 
     @Id
-    @GeneratedValue(strategy =  GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.AUTO)
     private UUID id;
 
 
     @Column
-    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
+    @JsonFormat(pattern = "dd-MM-yyyy HH:mm:ss")
     private LocalDateTime entrada;
 
 
@@ -43,13 +43,12 @@ public class PetshopModelo {
 
     private String statusTratamento;
 
-    private String email;
-
-    private String telefone;
 
     private String responsavel;
 
-    private Float valor;
+    private String contato;
+
+    private Double valor;
 
 
     public UUID getId() {
@@ -141,27 +140,12 @@ public class PetshopModelo {
         this.statusTratamento = statusTratamento;
     }
 
-    public String getEmail() {
-        return email;
-    }
 
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public Float getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Float valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
@@ -171,5 +155,13 @@ public class PetshopModelo {
 
     public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
+    }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
     }
 }

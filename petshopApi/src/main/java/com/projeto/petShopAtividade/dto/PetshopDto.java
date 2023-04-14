@@ -31,11 +31,10 @@ public class PetshopDto {
     private String statusTratamento;
 
     @NotBlank
-    private String telefone;
-    @NotBlank
-    private String email;
+    private String contato;
+
     @NotNull
-    private Float valor;
+    private double valor;
 
 
     private String responsavel;
@@ -114,28 +113,11 @@ public class PetshopDto {
         this.statusTratamento = statusTratamento;
     }
 
-
-    public String getTelefone() {
-        return telefone;
-    }
-
-    public void setTelefone(String telefone) {
-        this.telefone = telefone;
-    }
-
-    public String getEmail() {
-        return email;
-    }
-
-    public void setEmail(String email) {
-        this.email = email;
-    }
-
-    public Float getValor() {
+    public Double getValor() {
         return valor;
     }
 
-    public void setValor(Float valor) {
+    public void setValor(Double valor) {
         this.valor = valor;
     }
 
@@ -145,5 +127,13 @@ public class PetshopDto {
 
     public void setResponsavel(String responsavel) {
         this.responsavel = responsavel;
+    }
+
+    public String getContato() {
+        return contato;
+    }
+
+    public void setContato(String contato) {
+        this.contato = contato;
     }
 }

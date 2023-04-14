@@ -60,25 +60,46 @@ public class PetshopServico {
     }
 
     public List<PetshopModelo> ultimosDias(String dias, String status) {
+        if(status.equals("TODOS")){
+            status = "PREPARANDO', 'FINALIZADO', 'CANCELADO";
+            System.out.println(status);
+        }
         String sql = "SELECT *\n" +
                 "FROM tb_petshop\n" +
                 "WHERE entrada > current_date - interval '" + dias + "' day AND " +
-                "status_tratamento != '" + status+ "'";
+                "status_tratamento IN ( '" + status+ "')";
 
 
-        List <PetshopModelo>  soma= jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PetshopModelo.class));
-        System.out.println(soma);
+        List <PetshopModelo>  resultado= jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PetshopModelo.class));
 
-        return soma;
+        return resultado;
     }
 
-    public int calcularSoma() {
-        String sql = "SELECT SUM(valor) FROM tb_petshop";
-        Integer soma = jdbcTemplate.queryForObject(sql, Integer.class);
+    public List<PetshopModelo> maisRecentes() {
+        String sql = "SELECT * FROM tb_petshop\n" +
+                "WHERE EXTRACT(MONTH FROM entrada) = EXTRACT(MONTH FROM CURRENT_DATE)\n" +
+                "ORDER BY entrada DESC ";
+
+
+
+        List <PetshopModelo>  resultado= jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(PetshopModelo.class));
+        return resultado;
+    }
+
+
+
+
+
+
+    public Double calcularSoma() {
+
+        String sql = "SELECT SUM(valor) FROM tb_petshop\n" + "WHERE EXTRACT(MONTH FROM entrada) = EXTRACT(MONTH FROM CURRENT_DATE)";
+        Double soma = jdbcTemplate.queryForObject(sql, Double.class);
+
         return soma != null ? soma : 0;
     }
 
-    public void gerarPdf(String nome, String especie, String raca, String peso, String tratamento, String telefone, String responsavel, float valor) throws IOException {
+    public void gerarPdf(String nome, String especie, String raca, String peso, String tratamento, String telefone, String responsavel, double valor) throws IOException {
         String entradaPdf = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm:ss"));
         DecimalFormat df = new DecimalFormat("0.00");
         String valorConvertido = df.format(valor);

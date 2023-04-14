@@ -39,7 +39,7 @@ public class ClientePetshopControle {
 
         var clientePetshopModelo = new ClientePetshopModelo();
         BeanUtils.copyProperties(clientePetshopDto, clientePetshopModelo);
-
+        clientePetshopModelo.setEntrada(LocalDateTime.from(LocalDateTime.now()));
         return ResponseEntity.status(HttpStatus.CREATED).body(clientePetshopServico.save(clientePetshopModelo));
     }
 
@@ -85,5 +85,12 @@ public class ClientePetshopControle {
             clientePetshopServico.delete(petshopClienteModeloOptional.get());
             return new ResponseEntity<>(HttpStatus.OK);
         }
+    }
+
+    @GetMapping(value = "/recentes")
+    public ResponseEntity<List<ClientePetshopModelo>> getClientesRecentesPetshop(){
+        System.out.println("Executando mais recentes");
+
+        return ResponseEntity.status(HttpStatus.OK).body(clientePetshopServico.clientesMaisRecentes());
     }
 }

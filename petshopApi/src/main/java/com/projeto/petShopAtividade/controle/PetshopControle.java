@@ -52,6 +52,7 @@ public class PetshopControle {
         Optional<ClientePetshopModelo> clienteModelo = clientePetshopServico.findById(petshopDto.getClienteid());
         var petshopModelo = new PetshopModelo();
         petshopDto.setResponsavel(clienteModelo.get().getNome());
+
         BeanUtils.copyProperties(petshopDto, petshopModelo);
 
         petshopModelo.setEntrada(LocalDateTime.from(LocalDateTime.now()));
@@ -61,20 +62,20 @@ public class PetshopControle {
         System.out.println(entradaMail);
 
         petshopModelo.setClientePetshopModelo(clienteModelo.get());
+        petshopModelo.setContato(clienteModelo.get().getTelefone());
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setText("Olá "+petshopDto.getNome()+ ", o seu pet "+ petshopDto.getNome()+" foi cadastrado as "+ entradaMail + " Obrigado!");
+        message.setTo(clienteModelo.get().getEmail());
+        message.setFrom("rodrigowitthoeft95@gmail.com");
+        message.setSubject("Petshop");
 
-//        SimpleMailMessage message = new SimpleMailMessage();
-//        message.setText("Olá "+petshopDto.getNome()+ ", o seu pet "+ petshopDto.getNome()+" foi cadastrado as "+ entradaMail + " Obrigado!");
-//        message.setTo(clientePetshopDto.getEmail());
-//        message.setFrom("rodrigowitthoeft95@gmail.com");
-//        message.setSubject("Petshop");
-//
-//        try {
-//            mailSender.send(message);
-//
-//        } catch (Exception e) {
-//            e.printStackTrace();
-//
-//        }
+        try {
+            mailSender.send(message);
+
+        } catch (Exception e) {
+            e.printStackTrace();
+
+        }
 
         return ResponseEntity.status(HttpStatus.CREATED).body(petshopServico.save(petshopModelo));
     }
@@ -86,9 +87,26 @@ public class PetshopControle {
         return ResponseEntity.status(HttpStatus.OK).body(petshopServico.ultimosDias(dias,status));
     }
 
+    @GetMapping(value = "/recentes")
+    public ResponseEntity<List<PetshopModelo>> getRecentesPetshop(){
+        System.out.println("Executando mais recentes");
+
+        return ResponseEntity.status(HttpStatus.OK).body(petshopServico.maisRecentes());
+    }
+
+    @GetMapping(value = "/lucro")
+    public ResponseEntity<Double> getLucroPetshop(){
+        System.out.println("Executando mais recentes");
+
+        return ResponseEntity.status(HttpStatus.OK).body(petshopServico.calcularSoma());
+    }
+
+
+
     @GetMapping
     public ResponseEntity<List<PetshopModelo>> getAllPetshop() {
-        //System.out.println(petshopServico.calcularSoma());
+        System.out.println("Executando o total do mês");
+        System.out.println(petshopServico.calcularSoma());
         return ResponseEntity.status(HttpStatus.OK).body(petshopServico.findAll());
     }
     @GetMapping(value = "/{id}")
@@ -119,24 +137,30 @@ public class PetshopControle {
     public ResponseEntity<Object> atualizaPetshop(@PathVariable(value = "id") UUID id, @RequestBody @Valid PetshopDto petshopDto,ClientePetshopDto clientePetshopDto ) {
 
         Optional<PetshopModelo> petshopModeloOptional = petshopServico.findById(id);
+
+
         if (!petshopModeloOptional.isPresent()) {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encontrado");
         }
 
         var petshopModelo = petshopModeloOptional.get();
 
+
         BeanUtils.copyProperties(petshopDto, petshopModelo);
 
         petshopModelo.setId(petshopModeloOptional.get().getId());
 
-//        if(!petshopModelo.getStatusTratamento().equals(("PREPARANDO"))) {
-//            SimpleMailMessage message = new SimpleMailMessage();
-//            message.setText("Olá " + petshopDto.getNome() + ", houve uma atualização no tratamento "+petshopModelo.getTratamento() +" para " + petshopModelo.getStatusTratamento() + " do seu pet " + petshopDto.getNome() + "!");
-//            message.setTo(clientePetshopDto.getEmail());
-//            message.setFrom("rodrigowitthoeft95@gmail.com");
-//            message.setSubject("Petshop");
-//            mailSender.send(message);
-//        }
+
+
+        if(!petshopModelo.getStatusTratamento().equals(("PREPARANDO"))) {
+            System.out.println("Endereço de email: "+ clientePetshopDto.getEmail());
+            SimpleMailMessage message = new SimpleMailMessage();
+            message.setText("Olá " + petshopModelo.getClientePetshopModelo().getNome() + ", houve uma atualização no tratamento "+petshopModelo.getTratamento() +" para " + petshopModelo.getStatusTratamento() + " do seu pet " + petshopDto.getNome() + "!");
+            message.setTo(petshopModelo.getClientePetshopModelo().getEmail());
+            message.setFrom("rodrigowitthoeft95@gmail.com");
+            message.setSubject("Petshop");
+            mailSender.send(message);
+        }
 
 
             return ResponseEntity.status(HttpStatus.OK).body(petshopServico.save(petshopModelo));
@@ -151,7 +175,7 @@ public class PetshopControle {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("Registro não encontrado");
         }
         petshopServico.gerarPdf(petshopModeloOptional.get().getNome(),petshopModeloOptional.get().getEspecie(),petshopModeloOptional.get().getRaca(),
-                petshopModeloOptional.get().getPeso(),petshopModeloOptional.get().getTratamento(),petshopModeloOptional.get().getTelefone(),
+                petshopModeloOptional.get().getPeso(),petshopModeloOptional.get().getTratamento(),petshopModeloOptional.get().getClientePetshopModelo().getTelefone(),
                 petshopModeloOptional.get().getClientePetshopModelo().getNome(),petshopModeloOptional.get().getValor());
 
         return new ResponseEntity(HttpStatus.OK);

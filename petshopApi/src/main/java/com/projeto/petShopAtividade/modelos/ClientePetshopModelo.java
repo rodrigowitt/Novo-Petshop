@@ -1,8 +1,10 @@
 package com.projeto.petShopAtividade.modelos;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.UUID;
 
@@ -14,11 +16,17 @@ public class ClientePetshopModelo {
     @GeneratedValue(strategy =  GenerationType.AUTO)
     private UUID id;
 
+    @Column
+    @JsonFormat(pattern="dd-MM-yyyy HH:mm:ss")
+    private LocalDateTime entrada;
+
     private String nome;
 
     private String telefone;
 
     private String email;
+
+    private String cpf;
 
     private String nascimento;
 
@@ -111,5 +119,21 @@ public class ClientePetshopModelo {
 
     public void setCep(String cep) {
         this.cep = cep;
+    }
+
+    public LocalDateTime getEntrada() {
+        return entrada;
+    }
+
+    public void setEntrada(LocalDateTime entrada) {
+        this.entrada = entrada;
+    }
+
+    public String getCpf() {
+        return cpf;
+    }
+
+    public void setCpf(String cpf) {
+        this.cpf = cpf;
     }
 }
