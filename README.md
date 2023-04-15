@@ -34,7 +34,7 @@
     <li>Clone este repositório em sua máquina local.</li>
     <li>Abra o petshopaAPI em uma IDE compatível com Java e Spring</li>
     <li>Abra o petshopapp com o VS Code ou IDE de sua preferência</li>
-    <li>BExecute o projeto e abra o aplicativo no navegador</li>
+    <li>Execute o projeto e abra o aplicativo no navegador</li>
 </ul>
 
 
