@@ -21,6 +21,10 @@
     <li>Adicionar, deletar e atualizar lista de clientes</li>
     <li>Gerar relatórios de serviços realizados</li>
     <li>Buscar serviços por mês ou status</li>
+    <li>Envio automático de email ao responsável</li>
+    <li>Contato direto com o responsável pelo Whatsapp </li>
+    <li>Mostrar o lucro do mês </li>
+    
 </ul>
 <br>
 <h3>Instruções<h3/> 
