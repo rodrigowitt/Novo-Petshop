@@ -22,6 +22,7 @@
     <li>Gerar relatórios de serviços realizados</li>
     <li>Buscar serviços por mês ou status</li>
     <li>Envio automático de email ao responsável</li>
+    <li>Envio automático de email ao responsável ao finalizar um serviço</li>
     <li>Contato direto com o responsável pelo Whatsapp </li>
     <li>Mostrar o lucro do mês </li>
     
