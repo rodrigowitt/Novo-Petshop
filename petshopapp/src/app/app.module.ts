@@ -20,6 +20,8 @@ import { InicioComponent } from './pages/inicio/inicio.component';
 import { CommonModule, registerLocaleData } from '@angular/common';
 import { ReplacePipe } from './pages/inicio/replace.pipe';
 import pt from '@angular/common/locales/pt';
+import { AgendamentoComponent } from './pages/agendamento/agendamento.component';
+import { ListaragendamentoComponent } from './pages/listaragendamento/listaragendamento.component';
 
 
 
@@ -30,6 +32,8 @@ const routes: Routes = [
   { path: 'pets', component: PetsComponent },
   { path: 'relatorios', component: RelatoriosComponent},
   { path: 'inicio', component: InicioComponent},
+  { path: 'agendar', component: AgendamentoComponent},
+  { path: 'agendamento', component: ListaragendamentoComponent},
   { path: '', pathMatch:'full',redirectTo:'inicio'},
   
  
@@ -46,7 +50,9 @@ const routes: Routes = [
     PetsComponent,
     RelatoriosComponent,
     InicioComponent,
-    ReplacePipe
+    ReplacePipe,
+    AgendamentoComponent,
+    ListaragendamentoComponent
     
 
     

@@ -16,10 +16,15 @@
          <a  routerLink="pets" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2" aria-current="true">
            <i class="fa-solid fa-paw me-3"></i><span>Pets</span>
          </a>
+         <a  routerLink="agendamento" routerLinkActive="active-route" class="list-group-item list-group-item-action menus py-2" aria-current="true">
+            <i class="fa-regular fa-calendar me-3"></i><span>Agenda</span>
+          </a>
          <a routerLink="clientes" routerLinkActive="active-route" class="list-group-item list-group-item-action py-2 menus">
            <i class="fa-solid fa-person me-3"></i><span>Clientes</span>
          </a>
-
+         <a routerLink="agendar" routerLinkActive="active-route" class="list-group-item list-group-item-action py-2 menus">
+            <i class="fa-regular fa-plus fa-beat me-3"></i><span>Agendar</span>
+          </a>
          <a (click)="onOpenModal(null, 'add')"  class="list-group-item list-group-item-action py-2 menus"><i
              class="fa-regular fa-plus fa-beat me-3"  ></i><span>Novo Serviço</span></a>
          <a  (click)="onOpenModal(null, 'addClient')" class="list-group-item list-group-item-action py-2 menus"><i
