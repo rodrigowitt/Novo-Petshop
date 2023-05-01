@@ -28,3 +28,12 @@ export interface Cliente{
     cep: string;
     
 }
+
+export interface Agendamento{
+    id: string;
+    nome: string;
+    responsavel: string;
+    telefone: string;
+    data: string;
+    horario: string;
+}

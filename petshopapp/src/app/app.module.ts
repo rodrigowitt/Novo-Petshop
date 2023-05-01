@@ -26,6 +26,8 @@ import { ListaragendamentoComponent } from './pages/listaragendamento/listaragen
 
 
 
+
+
 const routes: Routes = [
   
   { path: 'clientes', component: ClientesComponent },
@@ -52,7 +54,8 @@ const routes: Routes = [
     InicioComponent,
     ReplacePipe,
     AgendamentoComponent,
-    ListaragendamentoComponent
+    ListaragendamentoComponent,
+    
     
 
     
@@ -69,6 +72,7 @@ const routes: Routes = [
     MatInputModule,
     RouterModule.forRoot(routes),
     CommonModule,
+    
     
     
     

@@ -30,7 +30,7 @@ public class PetshopDto {
 
     private String statusTratamento;
 
-    @NotBlank
+
     private String contato;
 
     @NotNull

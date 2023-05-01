@@ -58,11 +58,15 @@ public class PetshopControle {
         petshopModelo.setEntrada(LocalDateTime.from(LocalDateTime.now()));
         petshopModelo.setStatusTratamento(String.valueOf(StatusTratamento.PREPARANDO));
         petshopModelo.setResponsavel(clienteModelo.get().getNome());
+        petshopModelo.setClientePetshopModelo(clienteModelo.get());
+        System.out.println("O contato é: " + clienteModelo.get().getTelefone());
+        petshopModelo.setContato(clienteModelo.get().getTelefone());
+
         String entradaMail = LocalDateTime.now().format(DateTimeFormatter.ofPattern("dd:MM:yyyy HH:mm:ss"));
         System.out.println(entradaMail);
 
-        petshopModelo.setClientePetshopModelo(clienteModelo.get());
-        petshopModelo.setContato(clienteModelo.get().getTelefone());
+
+
         SimpleMailMessage message = new SimpleMailMessage();
         message.setText("Olá "+petshopDto.getNome()+ ", o seu pet "+ petshopDto.getNome()+" foi cadastrado as "+ entradaMail + " Obrigado!");
         message.setTo(clienteModelo.get().getEmail());

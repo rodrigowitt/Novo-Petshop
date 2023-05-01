@@ -1,7 +1,7 @@
 
 <div class="buscador ">
 
-    <input type="search"  #key="ngModel" ngModel
+    <input type="search" (ngModelChange)="searchAgendamentos(key.value)" #key="ngModel" ngModel
                 name="key" id="searchName"class="form-control w-25" placeholder="Buscar pet..." required>
                 <i class="fa-sharp fa-solid fa-magnifying-glass tupla" data-toggle="tooltip" ></i>
  
@@ -13,15 +13,88 @@
              <th>Nome</th>
              <th>Responsavel</th>
              <th>Telefone</th>
-             <th class="text-center">Data</th>
+             <th>Data</th>
              <th>Horário</th>
              <th>Ações</th>
           </tr>
  
           <tbody>
-          
+          <tr *ngFor="let agenda of agendar">
+            <td>{{agenda.nome}}</td>
+               <td>{{agenda.responsavel}}</td>
+               <td>{{agenda.telefone}}</td>
+               <td>{{agenda.data | date:'dd-MM-yyyy'}}</td>
+               <td>{{agenda.horario}}</td>
+               <td >
+                  <a href="https://api.whatsapp.com/send?phone=55{{agenda.telefone}}" target="_blank"> <i class="fa-brands fa-whatsapp" style="color: #48c77f;" title="Whatsapp" ></i></a>
+                  <a (click)="onOpenModal(agenda, 'update')" href="#" class="editar" data-toggle="modal"><i class="material-icons fa fa-pencil" data-toggle="tooltip" title="Editar"></i></a>
+                  <a (click)="onOpenModal(agenda, 'delete')"href="#" class="deletar" data-toggle="modal"><i class="material-icons fa fa-times" data-toggle="tooltip" title="Deletar"></i></a>
+               </td>
+          </tr>
                 
             
        </table>
     </div>
  </div>
+
+ <div class="modal fade" id="updateAgendaModal3" tabindex="-1" role="dialog" aria-labelledby="petshopEditModalLabel" aria-hidden="true">
+   <div class="modal-dialog" role="document">
+      <div class="modal-content">
+         <div class="modal-header">
+            <h5 class="modal-title" id="updatePetshopModalLabel">Editar Agendamento de {{editAgenda?.nome}}</h5>
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+            </button>
+         </div>
+         <div class="modal-body">
+            <form #editForm="ngForm">
+               <div class="form-group">
+                  <label for="nome">Nome</label>
+                  <input type="text" ngModel="{{editAgenda?.nome}}" name="nome" class="form-control" id="nome" aria-describedby="emailHelp">
+               </div>
+               <div class="form-group">
+                  <label for="responsavel">Responsavel</label>
+                  <input type="text" ngModel="{{editAgenda?.responsavel}}" name="responsavel" class="form-control" id="responsavel" aria-describedby="responsavelHelp">
+               </div>
+               <div class="form-group">
+                  <label for="telefone">Telefone</label>
+                  <input type="text" ngModel="{{editAgenda?.telefone}}" name="telefone" class="form-control" id="telefone" aria-describedby="emailHelp">
+               </div>
+               <div class="form-group">
+                  <label for="data">Data</label>
+                  <input type="text" ngModel="{{editAgenda?.data}}" name="data" class="form-control" id="data" aria-describedby="emailHelp">
+               </div>
+               <div class="form-group">
+                   <label for="horario">Horário</label>
+                   <input type="text" ngModel="{{editAgenda?.horario}}" name="horario" class="form-control" id="horario" aria-describedby="emailHelp">
+                  </div>
+         
+              <div class="text-center">
+                  <button type="button" id="" data-dismiss="modal" class="btn btn-secondary">Fechar</button>
+                  <button (click)="onUpdateAgenda(editForm.value,editAgenda?.id)" data-dismiss="modal" class="btn btn-primary ml-2" >Salvar</button>
+               </div>
+            </form>
+         </div>
+      </div>
+   </div>
+   </div>
+
+   <div class="modal fade" id="deleteAgendaModal3" tabindex="-1" role="dialog" aria-labelledby="deleteModelLabel" aria-hidden="true">
+      <div class="modal-dialog" role="document">
+         <div class="modal-content">
+            <div class="modal-header">
+               <h5 class="modal-title" id="deleteModelLabel">Deletar Agendamento</h5>
+               <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+               <span aria-hidden="true">&times;</span>
+               </button>
+            </div>
+            <div class="modal-body">
+               <p>Tem certeza que deseja deletar: {{deleteAgenda?.nome}}?</p>
+               <div class="text-center">
+                  <button type="button" class="btn btn-secondary" data-dismiss="modal">Não</button>
+                  <button (click)="onDeleteAgenda(deleteAgenda?.id)" class="btn btn-danger ml-2" data-dismiss="modal">Sim</button>
+               </div>
+            </div>
+         </div>
+      </div>
+      </div>
