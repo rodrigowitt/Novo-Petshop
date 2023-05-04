@@ -68,7 +68,7 @@ public class PetshopControle {
 
 
         SimpleMailMessage message = new SimpleMailMessage();
-        message.setText("Olá "+petshopDto.getNome()+ ", o seu pet "+ petshopDto.getNome()+" foi cadastrado as "+ entradaMail + " Obrigado!");
+        message.setText("Olá "+clienteModelo.get().getNome()+ ", o seu pet "+ petshopDto.getNome()+" foi cadastrado as "+ entradaMail + " Obrigado!");
         message.setTo(clienteModelo.get().getEmail());
         message.setFrom("rodrigowitthoeft95@gmail.com");
         message.setSubject("Petshop");

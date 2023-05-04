@@ -69,4 +69,10 @@ public class AgendamentoControle {
             return new ResponseEntity<>(HttpStatus.OK);
         }
     }
+    @GetMapping(value = "/recentes")
+    public ResponseEntity<List<AgendamentoModelo>> getAgendamentoRecentesPetshop(){
+        System.out.println("Executando mais recentes");
+
+        return ResponseEntity.status(HttpStatus.OK).body(agendamentoServico.agendamentoMaisRecentes());
+    }
 }

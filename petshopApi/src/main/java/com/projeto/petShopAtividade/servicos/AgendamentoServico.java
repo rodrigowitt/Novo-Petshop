@@ -1,8 +1,10 @@
 package com.projeto.petShopAtividade.servicos;
 
 import com.projeto.petShopAtividade.modelos.AgendamentoModelo;
+import com.projeto.petShopAtividade.modelos.ClientePetshopModelo;
 import com.projeto.petShopAtividade.repositorios.AgendamentoRepositorio;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Service;
 
@@ -35,5 +37,15 @@ public class AgendamentoServico {
 
     public void delete(AgendamentoModelo agendamentoModelo) {
         agendamentoRepositorio.delete(agendamentoModelo);
+    }
+    public List<AgendamentoModelo> agendamentoMaisRecentes() {
+        String sql = "SELECT *\n" +
+                "FROM tb_agendamento\n" +
+                "WHERE horario::time  >= CURRENT_TIME\n"+
+                "ORDER BY concat(data, '', horario) ASC";
+
+
+        List <AgendamentoModelo>  resultado= jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(AgendamentoModelo.class));
+        return resultado;
     }
 }

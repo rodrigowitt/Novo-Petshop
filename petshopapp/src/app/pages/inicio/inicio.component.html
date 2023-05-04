@@ -65,18 +65,18 @@
 
   <div class="tabela2 mt-4">
     <div class="card mb-n cardL">
-      <p class="card-title titulo2 mb-4 text-center">Clientes Recentes</p>
+      <p class="card-title titulo2 mb-4 text-center">Próximos Agendamentos</p>
       <table class="table table-hover " id="main-container2">
             <tr>
               <th>Nome</th>
-              <th>Telefone</th>
-              <th>Cidade</th>
+              <th>Data</th>
+              <th>Horário</th>
            </tr>
            <tbody>
-            <tr *ngFor="let clientes of cliente.slice(0, 10)">
-               <td class="bg-transparent">{{clientes.nome}}</td>
-               <td>{{clientes.telefone}}</td>
-               <td>{{clientes.cidade}}</td>
+            <tr *ngFor="let agendamentos of agendar.slice(0, 10)">
+               <td class="bg-transparent">{{agendamentos.nome}}</td>
+               <td>{{agendamentos.data}}</td>
+               <td>{{agendamentos.horario}}</td>
             </tr>
           </table>
     </div>

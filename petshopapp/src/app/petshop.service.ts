@@ -38,7 +38,9 @@ public getClient(): Observable<Cliente[]>{
 public getAgendamento(): Observable<Agendamento[]>{
   return this.http.get<Agendamento[]>(`${this.apiServerUrl}agendamento`)
 }
-
+public getAgendamentoRecentes(): Observable<Agendamento[]>{
+  return this.http.get<Agendamento[]>(`${this.apiServerUrl}agendamento/recentes`)
+}
 public addPet(petshop: Petshop): Observable<Petshop>{
   return this.http.post<Petshop>(`${this.apiServerUrl}petshop`, petshop)
 }

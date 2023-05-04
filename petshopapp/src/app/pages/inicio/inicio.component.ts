@@ -1,6 +1,6 @@
 import { HttpErrorResponse } from '@angular/common/http';
 import { Component, ElementRef, ViewChild } from '@angular/core';
-import { Petshop, Cliente } from 'src/app/petshop';
+import { Petshop, Cliente, Agendamento } from 'src/app/petshop';
 import { PetshopService } from 'src/app/petshop.service';
 
 
@@ -16,6 +16,7 @@ export class InicioComponent {
   public pet2: Petshop[] = [];
   public cliente: Cliente[] = [];
   public lucro: number  ;
+  public agendar : Agendamento [] = [];
   
   constructor ( private petshopService: PetshopService){}
  
@@ -25,6 +26,7 @@ export class InicioComponent {
     this.getClientesRecentes();
     this.getServicos();
     this.getlucro();
+    this.getAgendamentoRecentes();
     
     
   }
@@ -67,6 +69,16 @@ export class InicioComponent {
       
         )
        }
+
+       public getAgendamentoRecentes():void{
+        this.petshopService.getAgendamentoRecentes().subscribe(
+          (response: Agendamento[])=>{
+            this.agendar = response;
+            console.log(response.length)
+          }, (error: HttpErrorResponse) => {alert(error.message)}
+        
+          )
+         }
 
      getClasseCor(valor: String): string {
       if (valor == "PREPARANDO") {
