@@ -19,6 +19,7 @@
 <ul>
     <li>Adicionar, deletar e atualizar lista de serviços</li>
     <li>Adicionar, deletar e atualizar lista de clientes</li>
+    <li>Adicionar, deletar e atualizar agendamento de horário</li>
     <li>Gerar relatórios de serviços realizados</li>
     <li>Buscar serviços por mês ou status</li>
     <li>Envio automático de email ao responsável</li>
