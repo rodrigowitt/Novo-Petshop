@@ -41,8 +41,8 @@ public class AgendamentoServico {
     public List<AgendamentoModelo> agendamentoMaisRecentes() {
         String sql = "SELECT *\n" +
                 "FROM tb_agendamento\n" +
-                "WHERE horario::time  >= CURRENT_TIME\n"+
-                "ORDER BY concat(data, '', horario) ASC";
+                "WHERE horario::time >= CURRENT_TIME AND to_date(data, 'YYYY/MM/DD') = CURRENT_DATE\n"+
+                "ORDER BY data || ' ' || horario ASC";
 
 
         List <AgendamentoModelo>  resultado= jdbcTemplate.query(sql, new BeanPropertyRowMapper<>(AgendamentoModelo.class));
