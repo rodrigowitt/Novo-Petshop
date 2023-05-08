@@ -26,7 +26,7 @@
                <td>{{petshop.tratamento}}</td>
                <td class="text-center elemento1"  [ngClass]="getClasseCor(petshop.statusTratamento)">{{petshop.statusTratamento}}</td>
                <td class="text-center">{{petshop.entrada}}</td>
-               <td>{{petshop.valor}}</td>
+               <td>{{petshop.valor| currency:'BRL'}}</td>
                
                
                <td >

@@ -1,36 +1,40 @@
+
+
+
 <div class="row">
     <div class="col-sm-2 card1">
-      <div class="card">
+      <div class="card left-primary shadow h-100">
         <div class="card-body" >
           <h5 class="card-title titulo">{{pet.length}}</h5>
-          <p class="card-text d-flex descricao">Serviços do Mês</p><i class="fa-solid fa-briefcase botao01" ></i>
+          <p class="card-text d-flex descricao font-weight-bold text-primary">Serviços do Mês</p><i class="fa-solid fa-briefcase botao01" ></i>
           
         </div>
       </div>
     </div>
+      
     <div class="col-sm-2 ml-4">
-      <div class="card">
+      <div class="card border-left-primary shadow h-100">
         <div class="card-body">
           <h5 class="card-title titulo">R$ {{lucro| number: '1.2-2' : 'pt-BR'}}</h5>
-          <p class="card-text descricao">Lucro do Mês</p>
+          <p class="card-text descricao font-weight-bold text-primary">Lucro do Mês</p>
           <i class="fa-solid fa-hand-holding-dollar botao01"></i>
         </div>
       </div>
     </div>
     <div class="col-sm-2 ml-4">
-        <div class="card">
+        <div class="card left-primary shadow h-100">
           <div class="card-body">
             <h5 class="card-title titulo">{{cliente.length}}</h5>
-            <p class="card-text descricao">Clientes Cadastrados</p>
+            <p class="card-text descricao font-weight-bold text-primary">Clientes Cadastrados</p>
             <i class="fa-solid fa-users botao01"></i>
           </div>
         </div>
       </div>
       <div class="col-sm-2 ml-4">
-        <div class="card">
+        <div class="card left-primary shadow h-100">
           <div class="card-body">
             <h5 class="card-title titulo">{{pet2.length}}</h5>
-            <p class="card-text descricao">Pets Cadastrados</p>
+            <p class="card-text descricao font-weight-bold text-primary">Pets Cadastrados</p>
             <i class="fa-solid fa-paw botao01"></i>
           </div>
         </div>
@@ -55,7 +59,7 @@
                <td class="bg-transparent">{{petshop.nome}}</td>
                <td>{{petshop.responsavel}}</td>
                <td>{{petshop.tratamento}}</td>
-               <td>{{petshop.valor}}</td>
+               <td>{{petshop.valor| currency:'BRL'}}</td>
                <td  class="text-center"  [ngClass]="getClasseCor(petshop.statusTratamento)">{{petshop.statusTratamento}}</td>
             </tr>
           </table>
