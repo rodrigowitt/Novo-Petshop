@@ -88,6 +88,7 @@ th {border:none!important}
     width: 130px;
     font-weight: bold;
 }
-.grafico{
-    margin-left: 80vh;
+.pagination{
+    margin-left: 85.2vmax;
+    margin-top: 0px !important;
 }
