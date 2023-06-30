@@ -79,7 +79,7 @@
            <tbody>
             <tr *ngFor="let agendamentos of agendar.slice(0, 10)">
                <td class="bg-transparent">{{agendamentos.nome}}</td>
-               <td>{{agendamentos.data}}</td>
+               <td>{{agendamentos.data| date:'dd-MM-yyyy'}}</td>
                <td>{{agendamentos.horario}}</td>
             </tr>
           </table>
