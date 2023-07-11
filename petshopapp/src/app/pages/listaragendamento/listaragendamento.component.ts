@@ -12,8 +12,29 @@ export class ListaragendamentoComponent {
   public agendar : Agendamento [] = [];
   public editAgenda ?: Agendamento | null;
   public deleteAgenda : Agendamento | null;
+  itemsPerPage: number = 10;
+  currentPage: number = 1;
+  totalPages: any = 1;
+  pages: number[];
 
   constructor ( private petshopService: PetshopService){}
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  setPage(page: number) {
+    this.currentPage = page;
+  }
+ 
 
   ngOnInit(): void {
     this.getAgendamentos();
@@ -24,8 +45,13 @@ export class ListaragendamentoComponent {
     this.petshopService.getAgendamento().subscribe(
       (response: Agendamento[])=>{
         this.agendar = response;
+        this.totalPages = Math.ceil(this.agendar.length / this.itemsPerPage);
+    this.pages = Array.from({length: this.totalPages}, (v, k) => k + 1);
+    if (this.currentPage > this.totalPages) {
+      this.currentPage = this.totalPages;
+    }
         console.log("Agendamento = " + response)
-      }, (error: HttpErrorResponse) => {alert(error.message)}
+      },(error: HttpErrorResponse) => {alert(error.message)}
     
       )
      }

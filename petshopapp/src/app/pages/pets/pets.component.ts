@@ -40,7 +40,8 @@ export class PetsComponent {
   
   
   ngOnInit(): void {
-    this.getTratamentos();
+    //this.getTratamentos();
+    this.getRecentes();
     
     
     
@@ -82,6 +83,21 @@ export class PetsComponent {
       )
      }
 
+     public getRecentes():void{
+      this.petshopService.getRecentes().subscribe(
+        (response: Petshop[])=>{
+          this.pet = response;
+          this.total = response;
+        this.totalPages = Math.ceil(this.pet.length / this.itemsPerPage);
+    this.pages = Array.from({length: this.totalPages}, (v, k) => k + 1);
+    if (this.currentPage > this.totalPages) {
+      this.currentPage = this.totalPages;
+    }
+      }, (error: HttpErrorResponse) => {alert(error.message)}
+    
+      )
+       }
+
 
 
         public onUpdatePet(petshop: Petshop, petId : string | undefined) :void{
@@ -89,7 +105,7 @@ export class PetsComponent {
           this.petshopService.updatePet(petId, petshop).subscribe(
             (response: Petshop)=>{
               console.log(response);
-              this.getTratamentos();
+              this.getRecentes();
               
             },
             (error: HttpErrorResponse)=>{
@@ -102,7 +118,7 @@ export class PetsComponent {
             
             this.petshopService.deletePet(petId).subscribe(
               (response : void) =>{
-                this.getTratamentos();
+                this.getRecentes();
                 },
                 (error: HttpErrorResponse)=>{
                   alert(error.message)
@@ -114,7 +130,7 @@ export class PetsComponent {
             
             this.petshopService.documentPet(petId).subscribe(
               (response : void) =>{
-                this.getTratamentos();
+                this.getRecentes();
                 window.open("../assets/Cadastro.pdf")
                 },
                 (error: HttpErrorResponse)=>{
@@ -182,6 +198,8 @@ export class PetsComponent {
               return '';
             }
           }
+
+         
 
 
          

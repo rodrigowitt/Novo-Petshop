@@ -77,7 +77,7 @@ public class PetshopServico {
 
     public List<PetshopModelo> maisRecentes() {
         String sql = "SELECT * FROM tb_petshop\n" +
-                "WHERE EXTRACT(MONTH FROM entrada) = EXTRACT(MONTH FROM CURRENT_DATE)\n" +
+
                 "ORDER BY entrada DESC ";
 
 
@@ -108,7 +108,7 @@ public class PetshopServico {
         Image image1 = new Image(data);
         image1.scaleToFit(120,120);
         image1.setMarginLeft(230);
-        String path = "C:\\Users\\rodri\\OneDrive\\Área de Trabalho\\Novo-Petshop\\petshopapp\\src\\assets\\Cadastro.pdf";
+        String path = "C:\\Users\\rodri\\OneDrive\\Área de Trabalho\\Petshop-FullStack\\petshopapp\\src\\assets\\Cadastro.pdf";
         PdfWriter pdfWriter = new PdfWriter(path);
         PdfDocument pdfDocument = new PdfDocument(pdfWriter);
         pdfDocument.addNewPage();
@@ -166,6 +166,7 @@ public class PetshopServico {
         document.add(p8);
         document.add(p9);
         document.close();
+        System.out.println("Documento gerado!");
 
     }
 

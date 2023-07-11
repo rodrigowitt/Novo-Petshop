@@ -22,7 +22,7 @@
     width: 87.8vmax;
     margin-left: 21.2vh;
     margin-top: 4vh;
-    
+    margin-bottom: 0vh!important;
 }
 .table td:last-child i {
     opacity: 0.9;
@@ -65,4 +65,16 @@ th {border:none!important}
     width: 130px;
     
     border: 0px; 
+}
+.pagination{
+    margin-left: 75.7vmax;
+    
+    
+}
+.table>:not(caption)>*>* {
+    padding: 0rem 0.5rem;
+
+}
+.page-item:not(:first-child) .page-link {
+    margin-left: -16px;
 }

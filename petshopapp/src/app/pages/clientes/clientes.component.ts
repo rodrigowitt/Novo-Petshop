@@ -17,8 +17,28 @@ export class ClientesComponent {
   public editCliente : Cliente | null;
   public deletePet : Petshop | null;
   public deleteCliente : Cliente | null;
+  itemsPerPage: number = 10;
+  currentPage: number = 1;
+  totalPages: any = 1;
+  pages: number[];
   
   constructor ( private petshopService: PetshopService){}
+
+  prevPage() {
+    if (this.currentPage > 1) {
+      this.currentPage--;
+    }
+  }
+
+  nextPage() {
+    if (this.currentPage < this.totalPages) {
+      this.currentPage++;
+    }
+  }
+
+  setPage(page: number) {
+    this.currentPage = page;
+  }
   
   ngOnInit(): void {
     this.getClientes();
@@ -29,6 +49,11 @@ export class ClientesComponent {
     this.petshopService.getClient().subscribe(
       (response: Cliente[])=>{
         this.cliente = response;
+        this.totalPages = Math.ceil(this.cliente.length / this.itemsPerPage);
+    this.pages = Array.from({length: this.totalPages}, (v, k) => k + 1);
+    if (this.currentPage > this.totalPages) {
+      this.currentPage = this.totalPages;
+    }
         console.log(response);
       }, (error: HttpErrorResponse) => {alert(error.message)}
     
